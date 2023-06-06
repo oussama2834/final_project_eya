@@ -1,0 +1,189 @@
+<!doctype html>
+<html class="no-js" lang="zxx">
+  <app-header></app-header>
+
+   <body>
+     <!-- pre loader area start --><!--elli mlouel blkoll-->
+ <!-- <div id="loading">
+  <div id="loading-center">
+    <div id="loading-center-absolute">
+      <div class="loading-content">
+        <img class="loading-logo-text" src="assets/img/logo/2.png" alt="" style="width: 75%; height: 75%;">
+        <div class="loading-stroke">
+          <img class="loading-logo-icon" src="assets/img/logo/logo-icon.png" alt="">
+        </div>
+      </div>
+    </div>
+  </div>
+</div> -->
+<!-- pre loader area end -->
+
+      <!-- back to top start -->
+      <div class="progress-wrap">
+         <svg class="progress-circle svg-content" width="100%" height="100%" viewBox="-1 -1 102 102">
+            <path d="M50,1 a49,49 0 0,1 0,98 a49,49 0 0,1 0,-98" />
+         </svg>
+      </div>
+      <!-- back to top end -->
+
+      <main>
+
+         <!-- page title area start -->
+         <section class="page__title-area page__title-height page__title-overlay d-flex align-items-center" style="background-image:url(assets/img/events/event-1.jpg);">
+            <div class="container">
+               <div class="row">
+                  <div class="col-xxl-12">
+                     <div class="page__title-wrapper mt-110">
+                        <h3 class="page__title">Cours</h3>
+                        <nav aria-label="breadcrumb">
+                           <ol class="breadcrumb">
+                              <li class="breadcrumb-item"><a href="">Acceuil</a></li>
+                              <li class="breadcrumb-item active" aria-current="page">Cours</li>
+                           </ol>
+                        </nav>
+                     </div>
+                  </div>
+               </div>
+            </div>
+         </section>
+         <!-- page title area end -->
+                  <!-- partie fiha les cours -->
+                  <section class="services__area pt-115 pb-40">
+                    <div class="container">
+                       <div class="row">
+                          <div class="col-xxl-6 offset-xxl-3 col-xl-6 offset-xl-3">
+                             <div class="section__title-wrapper section-padding mb-60 text-center">
+                                <h2 class="section__title">Les dernières compétences techniques. <br><span class="yellow-bg yellow-bg-big">À votre portée.<img src="assets/img/shape/yellow-bg.png" alt=""></span> </h2>
+                                <p>Vous n'avez pas à lutter seul, vous avez notre assistance et notre aide.</p>
+                             </div>
+                          </div>
+                                  <!-- Button on the left -->
+        <div *ngIf="isEns" class="d-flex justify-content-start mb-4" style="margin-left: 1000px;">
+            <div class="header__btn header__btn-2 ml-50 d-none d-sm-block text-right">
+                <a href="addcours" class="e-btn blink" style="background-color: #0084ff;">Ajouter un cours</a>
+            </div>
+        </div>
+                       </div>
+                    </div>
+                 </section>
+                 <!-- partie fiha les cours  end -->
+         <section *ngIf="isEns" class="course__area pt-100 pb-120 d-flex justify-content-center">
+            <div class="container" >
+
+                <!--carte cour-->
+                <div class="row justify-content-center">
+                    <div class="col-xxl-12">
+                        <div class="basic-pagination wow fadeInUp mt-30" data-wow-delay=".2s">
+                            <div class="col-xxl-12" *ngFor="let cour of CoursparEnseignant|paginate:{itemsPerPage:10,currentPage:p}">
+                                <div class="course__item white-bg mb-30 fix">
+                                    <div class="row gx-0">
+                                        <!--partie eli fiha logo-->
+                                        <div class="col-xxl-4 col-xl-4 col-lg-4">
+                                            <div class="course__thumb course__thumb-list w-img p-relative fix">
+                                                <a>
+                                                    <img [src]="cour.img" style="height: 200px;"  />
+                                                    <!-- <img [src]="getLogoURL(cour.logo)" style="height: 200px;" *ngIf="cour.logo" /> -->
+                                                </a>
+                                            </div>
+                                        </div>
+                                        <!--partie eli fiha titre w desc-->
+                                        <div class="col-xxl-8 col-xl-8 col-lg-8 d-flex justify-content-center">
+                                            <div class="course__right" style="max-width: 400px;">
+                                                <div class="course__content course__content-3">
+                                                    <div class="course__summary" style="margin-bottom: 10px;">
+                                                        <p style="word-break: break-word; font-size: 40px; color: #2200ff; font-weight: bold;">{{cour.nom}}</p>
+                                                    </div>
+                                                </div>
+                                                <div class="course__more course__more-2 d-flex justify-content-between align-items-center">
+                                                    <div class="course__status d-flex align-items-center">
+                                                        <span class="yellow">
+                                                            <a href="/detailCour/{{cour.id}}" class="link-btn">Voir détails<i class="far fa-arrow-right"></i><i class="far fa-arrow-right"></i></a>
+                                                        </span>
+
+                                                    </div>
+                                                    <span  style="margin-left: 250px;">
+                                                      <a type="button" class="btn" href="javascript:void(0)" (click)="delete(cour.id)">
+                                                        delete
+                                                      </a></span>
+                                                </div>
+
+                                            </div>
+                                        </div>
+                                        <!--end partie eli fiha titre w desc-->
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!--carte cour end-->
+            </div>
+        </section>
+
+
+
+
+
+
+
+
+
+        <section *ngIf="isEtu" class="course__area pt-100 pb-120 d-flex justify-content-center">
+            <div class="container" >
+
+                <!--carte cour-->
+                <div class="row justify-content-center">
+                    <div class="col-xxl-12">
+                        <div class="basic-pagination wow fadeInUp mt-30" data-wow-delay=".2s">
+                            <div class="col-xxl-12" *ngFor="let cour of Cour|paginate:{itemsPerPage:10,currentPage:p}">
+                                <div class="course__item white-bg mb-30 fix">
+                                    <div class="row gx-0">
+                                        <!--partie eli fiha logo-->
+                                        <div class="col-xxl-4 col-xl-4 col-lg-4">
+                                            <div class="course__thumb course__thumb-list w-img p-relative fix">
+                                                <a>
+                                                    <img [src]="cour.img" style="height: 200px;"  />
+                                                    <!-- <img [src]="getLogoURL(cour.logo)" style="height: 200px;" *ngIf="cour.logo" /> -->
+                                                </a>
+                                            </div>
+                                        </div>
+                                        <!--partie eli fiha titre w desc-->
+                                        <div class="col-xxl-8 col-xl-8 col-lg-8 d-flex justify-content-center">
+                                            <div class="course__right" style="max-width: 400px;">
+                                                <div class="course__content course__content-3">
+                                                    <div class="course__summary" style="margin-bottom: 10px;">
+                                                        <p style="word-break: break-word; font-size: 40px; color: #2200ff; font-weight: bold;">{{cour.nom}}</p>
+                                                    </div>
+                                                </div>
+                                                <div class="course__more course__more-2 d-flex justify-content-between align-items-center">
+                                                    <div class="course__status d-flex align-items-center">
+                                                        <span class="yellow">
+                                                            <a href="/detailCour/{{cour.id}}" class="link-btn">Voir détails<i class="far fa-arrow-right"></i><i class="far fa-arrow-right"></i></a>
+                                                        </span>
+
+                                                    </div>
+                                                   
+                                                </div>
+
+                                            </div>
+                                        </div>
+                                        <!--end partie eli fiha titre w desc-->
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!--carte cour end-->
+            </div>
+        </section>
+
+         <!-- course area end -->
+         <pagination-controls style="text-align: right;" (pageChange)="p = $event"></pagination-controls>
+
+
+      </main>
+    <app-footer></app-footer>
+   </body>
+</html>
+

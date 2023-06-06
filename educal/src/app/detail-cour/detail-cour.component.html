@@ -1,0 +1,93 @@
+<!doctype html>
+<html class="no-js" lang="zxx">
+    <app-header></app-header>
+   <body>
+
+
+     <!-- pre loader area start --><!--elli mlouel blkoll-->
+     <div id="loading">
+        <div id="loading-center">
+          <div id="loading-center-absolute">
+            <div class="loading-content">
+              <img class="loading-logo-text" src="assets/img/logo/2.png" alt="" style="width: 75%; height: 75%;">
+              <div class="loading-stroke">
+                <img class="loading-logo-icon" src="assets/img/logo/logo-icon.png" alt="">
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <!-- pre loader area end -->
+      <!-- back to top start -->
+      <div class="progress-wrap">
+         <svg class="progress-circle svg-content" width="100%" height="100%" viewBox="-1 -1 102 102">
+            <path d="M50,1 a49,49 0 0,1 0,98 a49,49 0 0,1 0,-98" />
+         </svg>
+      </div>
+      <!-- back to top end -->
+
+
+      <main>
+
+         <!-- page title area start -->
+         <section class="page__title-area pt-120 pb-120">
+            <div class="hero__shape">
+              <img class="hero-1-circle" src="assets/img/shape/hero/hero-1-circle.png" alt="">
+              <img class="hero-1-circle-2" src="assets/img/shape/hero/hero-1-circle-2.png" alt="">
+              <img class="hero-1-dot-2" src="assets/img/shape/hero/hero-1-dot-2.png" alt="">
+            </div>
+            <div class="container-fluid">
+              <div class="row justify-content-center">
+                <div class="section__title-wrapper text-center mb-60">
+                    <h2 class="section__title">Détails du cour  <span class="yellow-bg yellow-bg-big">{{cour.nom}} <img src="assets/img/shape/yellow-bg.png" alt=""></span></h2>
+                 </div>
+              </div>
+              <div class="row justify-content-center">
+                <div class="col-xxl-12" style="max-width: 650px;"><!--position l carte-->
+                  <div class="course__wrapper " >
+                    <div class="page__title-content mb-50 ">
+                      <!-- Content goes here -->
+                      <a href="course-details.html" >
+                        <img src="{{cour.img}}" alt="">
+                     </a>
+                    </div>
+                    <!--licon wel infos -->
+                    <div class="course__meta-2 d-sm-flex mb-30 ">
+                      <div class="course__update" style="flex-grow: 1; text-align: center;">
+                        <!-- <h5 style="font-size: 24px; line-height: 1.5;">Logo du cour </h5> -->
+                        <br>
+                        <!-- <img [src]="getLogoURL(cour.logo)" style="height: 200px;" *ngIf="cour.logo" /> -->
+                        <br>
+                        <h5 style="font-size: 24px; line-height: 1.5;">Déscription du cour :</h5>
+                        <p style="word-break: break-word;"  >{{cour.description}}</p>
+                        <h5 style="font-size: 24px; line-height: 1.5;">Prix du cour en Dt:</h5>
+                        <p style="font-size: 18px; line-height: 1.5;">{{cour.prix}}</p>
+
+                        <!-- <h5 style="font-size: 24px; line-height: 1.5;">Télecharger le cour :</h5> -->
+                      <!--  <p><img src="assets/images/pdf.png" style="height: 50px;cursor: pointer;" (click)="downloadPdf(onListCour.Cour?.pdf)" /></p>   -->
+                      </div>
+                    </div>
+
+
+                    <!--button retour-->
+                    <ul class="social-links list-inline mb-0 d-flex justify-content-end">
+                      <li class="list-inline-item">
+                        <button type="button" class="btn btn-info" style="margin-right: 20px;" (click)="onListCour()">Retour</button>
+                      </li>
+                    </ul>
+
+
+                  </div>
+                </div>
+              </div>
+            </div>
+          </section>
+         <!-- page title area end -->
+
+
+      </main>
+
+   </body>
+<app-footer></app-footer>
+</html>
+

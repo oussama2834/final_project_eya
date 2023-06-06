@@ -1,0 +1,71 @@
+
+<app-header1></app-header1>
+
+<table class="table" *ngIf="listReservation.length>0" style="text-align: center;">
+    <thead>
+        <tr>
+
+            <th scope="col text-center">Cours</th>
+            <th scope="col">Date début</th>
+            <th scope="col">Date fin</th>
+            <th scope="col">Prix (dt)</th>
+            <!-- <th scope="col" >Action</th> -->
+            <th scope="col">Etat</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr *ngFor="let cours of listReservation">
+            <th scope="row">
+                <div class="alert alert-light" role="alert">
+                    {{cours?.cours?.nom}}
+                </div>
+            </th>
+            <td>
+                <div class="alert alert-light" role="alert">
+                    {{cours?.cours?.horaireDebut | date:'medium' }}
+                </div>
+            </td>
+            <td>
+                <div class="alert alert-light" role="alert">
+                    {{cours?.cours?.horaireFin | date:'medium' }}
+                </div>
+            </td>
+            <td>
+                <div class="alert alert-light" role="alert">
+                    {{cours?.cours?.prixbillet}} Dt
+                </div>
+            </td>
+            <td>
+
+                <p *ngIf="cours?.etat==0">
+                    <button class="btn btn-success" (click)="valider(cours)">Valider</button>
+                    <!--<button class="btn btn-danger" (click)="annuler(cours)">Annuler</button>-->
+
+
+                    <button class="btn btn-danger" (click)="annuler(cours)">Annuler</button>
+                    <!--<button class="btn btn-danger" (click)="annuler(cours)">Annuler</button>-->
+                </p>
+
+
+            </td>
+            <td>
+                <p class="alert alert-warning" role="alert" *ngIf="cours?.etat==0">
+                    en cours
+                </p>
+                <p class="alert alert-success" role="alert" *ngIf="cours?.etat==1">
+                    Validée
+                </p>
+                <p class="alert alert-danger" role="alert" *ngIf="cours?.etat==2">
+                    Annulée
+                </p>
+            </td>
+        </tr>
+
+    </tbody>
+</table>
+
+<div *ngIf="listReservation.length===0">
+    <div class="alert alert-primary" role="alert">
+        Pas des reservations!
+    </div>
+</div>

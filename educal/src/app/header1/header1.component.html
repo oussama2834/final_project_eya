@@ -1,0 +1,60 @@
+<header style="background-color: rgb(253, 253, 253);">
+    <nav class="navbar navbar-static-top navbar-expand-lg header-sticky">
+        <div class="container-fluid">
+            <button id="nav-icon4" type="button" class="navbar-toggler" data-bs-toggle="collapse" data-bs-target=".navbar-collapse">
+            <span></span>
+            <span></span>
+            <span></span>
+        </button>
+            <a class="navbar-brand" href="/">
+                <img class="img-fluid" src="assets/img/logo/2-.png" style="width: 50%; height: 82%;">
+            </a>
+            <div class="navbar-collapse collapse justify-content-start">
+                <ul class="nav navbar-nav">
+                    <li class="nav-item dropdown">
+                        <a class="nav-link" data-bs-toggle="dropdown" [routerLink]="['/']">Acceuil </a>
+                    </li>
+                    <li class="dropdown nav-item ">
+                        <a class="nav-link" data-bs-toggle="dropdown" [routerLink]="['/about']"> Qui sommes-nous?</a>
+
+                    </li>
+                    <li class="nav-item dropdown">
+                        <a class="nav-link" data-bs-toggle="dropdown" [routerLink]="['enseignant']">Enseignants </a>
+
+                    </li>
+                    <li class="nav-item dropdown">
+                        <a class="nav-link" data-bs-toggle="dropdown" routerLink="../cours">Session cours </a>
+
+                    </li>
+                    <li class="dropdown nav-item mega-menu">
+                        <a class="nav-link" data-bs-toggle="dropdown" [routerLink]="['contact']">contact </a>
+                    </li>
+
+
+                </ul>
+            </div>
+            <div class="add-listing" *ngIf="!this.isConnectedEtudient && this.isConnectedEnsignant">
+                <p style="width: 550px;">
+                    <button type="button" class="btn btn-warning" (click)="calendrierEns()">Calendrier </button>
+                    <button type="button" class="btn btn-warning" (click)="validateReservation()">Consulter validation</button>
+                    <button type="button" class="btn btn-danger" (click)="deconnexion()">  <i class="fa fa-power-off" ></i></button></p>
+
+            </div>
+            <div class="add-listing" *ngIf="this.isConnectedEtudient && !this.isConnectedEnsignant">
+
+                <p style="width: 550px;">
+                    <button type="button" class="btn btn-warning" (click)="calendrierEtudient()">Calendrier </button>
+                    <button type="button" class="btn btn-warning" (click)="mesReservation()">Mes réservations</button>
+                    <button type="button" class="btn btn-danger" (click)="deconnexion()">  <i class="fa fa-power-off" ></i></button>
+                </p>
+
+            </div>
+<!--les buttons-->
+<div class="header__btn header__btn-2  d-none d-sm-block" style="width:18%;">
+    <button  href="connect" type="button"  class="e-btn">Se connecter</button>
+</div>
+      <!-- end les buttons-->
+
+        </div>
+    </nav>
+</header>

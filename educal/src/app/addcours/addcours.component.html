@@ -1,0 +1,136 @@
+<!doctype html>
+<html class="no-js" lang="zxx">
+<app-header></app-header>
+   <body>
+
+      <!-- pre loader area start --><!--elli mlouel blkoll-->
+      <!-- <div id="loading">
+        <div id="loading-center">
+          <div id="loading-center-absolute">
+            <div class="loading-content">
+              <img class="loading-logo-text" src="assets/img/logo/2.png" alt="" style="width: 75%; height: 75%;">
+              <div class="loading-stroke">
+                <img class="loading-logo-icon" src="assets/img/logo/logo-icon.png" alt="">
+              </div>
+            </div>
+          </div>
+        </div>
+      </div> -->
+     <!-- pre loader area end -->
+        <!-- back to top start -->
+      <div class="progress-wrap">
+         <svg class="progress-circle svg-content" width="100%" height="100%" viewBox="-1 -1 102 102">
+            <path d="M50,1 a49,49 0 0,1 0,98 a49,49 0 0,1 0,-98" />
+         </svg>
+      </div>
+      <!-- back to top end -->
+
+
+      <main>
+
+         <!-- page title area start -->
+         <section class="page__title-area page__title-height page__title-overlay d-flex align-items-center" style="background-image:url(assets/img/page-title/page-title-2.jpg);">
+            <div class="container">
+               <div class="row">
+                  <div class="col-xxl-12">
+                     <div class="page__title-wrapper mt-110">
+                        <h3 class="page__title">Ajouter Cours</h3>
+                        <nav aria-label="breadcrumb">
+                           <ol class="breadcrumb">
+                              <li class="breadcrumb-item"><a href="index.html">Acceuil</a></li>
+                              <li class="breadcrumb-item active" aria-current="page">Ajouter Cours</li>
+                           </ol>
+                        </nav>
+                     </div>
+                  </div>
+               </div>
+            </div>
+         </section>
+         <!-- page title area end -->
+
+         <!-- carte ajouter cour -->
+         <section class="checkout-area pt-115 pb-120">
+               <div class="container ">
+                        <div class="section__title-wrapper mb-40 text-center">
+                            <h2 class="section__title">Ajouter <span class="yellow-bg yellow-bg-big"> Cours<img src="assets/img/shape/yellow-bg.png" alt=""></span></h2>
+
+                            <p>Nous sommes heureux de vous offrir la possibilité de partager vos connaissances en ajoutant un cours sur notre site. </p>
+                            <p> Pour faciliter le processus, nous avons créé ce formulaire simple et convivial qui vous permettra de proposer votre cours en quelques étapes simples.</p>
+                         </div>
+                         <div class="col-lg-6 mx-auto">
+                           <div class="your-order mb-30 align-items-center">
+                              <h3>Ajouter cours</h3>
+                              <div class="card-body">
+                                <div class="live-preview">
+                                    <div class="row gy-4">
+                                        <!-- <div>
+                                            <label for="labelInput" class="form-label">Logo</label>
+                                            <input type="file" class="form-control" accept="image/*" (change)="onSelectFile($event);" [(ngModel)]="newCour.logo" id="labelInput"  >
+                                        </div> -->
+                                        <!--end col-->
+                                        <div>
+                                          <label for="basiInput" class="form-label">Nom</label>
+                                          <input type="text" class="form-control" id="basiInput"  name="nom"
+                                           [(ngModel)]="newCour.nom">
+                                      </div>
+
+
+                                      <!--end col-->
+
+                                      <div>
+                                        <label for="basiInput" class="form-label">Description</label>
+                                        <textarea class="form-control" id="exampleFormControlTextarea5"
+                                         [rows]="calculateTextareaRows()" name="deecription" [(ngModel)]="newCour.description"  ></textarea> </div>
+
+                                        <!--end col-->
+
+                                        <div>
+                                            <label for="exampleInputpassword" class="form-label">Prix (Dt)
+                                            </label>
+                                            <input type="text" class="form-control" id="basiInput" value="00.000DT"
+                                             name="prix" [(ngModel)]="newCour.prix">
+                                        </div>
+                                          <div>
+                                            <label for="exampleInputpassword" class="form-label">Image
+                                            </label>
+                                            <input type="file" (change)="onSelectFile($event)" class="form-control" id="basiInput" name="image"
+                                             name="prix" [(ngModel)]="newCour.img">
+                                        </div>
+
+                                    </div>
+
+                                    <!--end row-->
+                                </div>
+                                <br>
+                                <br>
+                                <div class="col-xxl-12 text-right">
+                                 <button type="submit" class="e-btn" (click)="addNewCour()">Ajouter cours</button>
+                             </div>
+                            </div>
+
+                            </div>
+                          </div>
+
+                     </div>
+                <!--l design
+                <div class="col-xxl-4 offset-xxl-1 col-xl-4 offset-xl-1 col-lg-5 offset-lg-1">
+                  <div class="contact__info white-bg p-relative z-index-1">
+                    <div class="contact__shape">
+                      <img class="contact-shape-1" src="assets/img/contact/contact-shape-1.png" alt="">
+                      <img class="contact-shape-2" src="assets/img/contact/contact-shape-2.png" alt="">
+                      <img class="contact-shape-3" src="assets/img/contact/contact-shape-3.png" alt="">
+                    </div>
+                  </div>
+                </div>
+               -->
+         </section>
+         <!-- card end -->
+
+
+
+      </main>
+
+   </body>
+<app-footer></app-footer>
+</html>
+

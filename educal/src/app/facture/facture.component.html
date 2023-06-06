@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html lang="en">
+    <!-- ben nrodha facture w 3liha lklem-->
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+        <style>
+            .invoice-container {
+                width: 800px;
+                margin: 0 auto;
+                padding: 30px;
+                border: 1px solid #ccc;
+                background-color: #fff;
+            }
+            .invoice-container header {
+                margin-bottom: 20px;
+            }
+            .invoice-container footer {
+                margin-top: 20px;
+            }
+            .invoice-container h4 {
+                font-size: 24px;
+                font-weight: bold;
+            }
+            .invoice-container hr {
+                border-top: 1px solid #ccc;
+            }
+            .invoice-container .table th,
+            .invoice-container .table td {
+                vertical-align: middle;
+            }
+            .invoice-container .text-1 {
+                font-size: 12px;
+            }
+            @media print {
+                .invoice-container {
+                    border: none;
+                    background-color: #fff;
+                    padding: 0;
+                }
+                .invoice-container footer {
+                    display: none;
+                }
+                .btn-group {
+                    display: none;
+                }
+            }
+        </style>
+        </head>
+        <!-- end ben nrodha facture w 3liha lklem-->
+<body>
+       <!-- pre loader area start --><!--elli mlouel blkoll-->
+       <div id="loading">
+        <div id="loading-center">
+          <div id="loading-center-absolute">
+            <div class="loading-content">
+              <img class="loading-logo-text" src="assets/img/logo/2.png" alt="" style="width: 75%; height: 75%;">
+              <div class="loading-stroke">
+                <img class="loading-logo-icon" src="assets/img/logo/logo-icon.png" alt="">
+              </div>
+            </div>
+          </div>
+        </div>  
+      </div>
+     <!-- pre loader area end -->
+
+     <!-- back to top start -->
+     <div class="progress-wrap">
+        <svg class="progress-circle svg-content" width="100%" height="100%" viewBox="-1 -1 102 102">
+           <path d="M50,1 a49,49 0 0,1 0,98 a49,49 0 0,1 0,-98" />
+        </svg>
+     </div>
+     <!-- back to top end -->
+    <!-- Container -->
+    <div class="container-fluid invoice-container">
+        <!-- Header -->
+        <header class="text-center">
+            <div class="row align-items-center">
+                <div class="col-sm-7 text-center ">
+                    <img id="logo" src="assets/img/logo/2-.png" title="Invoice" alt="Invoice" style="width: 50%;" />
+                </div>
+                <div class="text-center ">
+                    <h4 class="text-7 mb-0">Facture</h4>
+                </div>
+            </div>
+            <hr>
+        </header>
+
+        <!-- Main Content -->
+        <main>
+            <div class="row">
+                <div class="col-sm-6"><strong>Date:</strong> {{this.date | date:'mediumDate'}}</div>
+                <div class="col-sm-6 text-sm-right"> <strong>Facture N°:</strong>{{this.data?.id}}</div>
+
+            </div>
+            <hr>
+            <div class="row">
+                <div class="col-sm-6 text-sm-right order-sm-1"> <strong>De la part:</strong>
+                    <address>
+      Mohamed Ali Taoues <br />
+      (+216)50 601 307<br />
+	  upkurs@gmail.com<br />
+    Nabeul, Nabeul
+      </address>
+                </div>
+                <div class="col-sm-6 order-sm-0 "> <strong>Facture a :</strong>
+                     
+                <!--    <qr-code [value]="data?.enseignant.email"></qr-code>   -->
+
+
+                </div>
+            </div>
+            <div class="card">
+                <div class="card-header px-2 py-0">
+                    <table class="table ">
+                        <thead>
+                            <tr>
+                                <td class=" border-0 " style="
+                                width: 294px;
+                            "><strong>Cours</strong></td>
+                                <td class="border-0  text-center"><strong>Date</strong></td>
+                                <td class=" border-0 text-center"><strong>Prix</strong></td>
+                                   </tr>
+                        </thead>
+                    </table>
+                </div>
+                <div class="card-body">
+                    <div class="table">
+                        <table class="table">
+                            <tbody>
+                               <tr> 
+                                <td class="border-0 text-right">{{data?.cours.nom}}</td>
+                                <td class="border-0 text-right">{{data?.cours.date |date}}</td>
+                                    <td class=" border-0  text-center">{{data?.cours.prixbillet}} DT</td>
+                                      </tr>
+
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </main>
+        <!-- Footer -->
+        <footer class="text-center mt-4">
+
+            <p class="text-1"><strong>REMARQUE :</strong> Il s'agit d'un reçu généré par ordinateur et ne nécessite pas de signature physique.</p>
+            <div class="btn-group btn-group-sm d-print-none"> <a href="javascript:window.print()" class="btn btn-light border text-black-50 shadow-none"><i class="fa fa-print"></i> Impression</a>  
+                    
+                <!--<a href="#" class="btn btn-light border text-black-50 shadow-none"><i class="fa fa-download"></i> Download</a>-->
+            </div>
+            <div [innerHtml]="message"></div>
+        </footer>
+    </div>
+</body>
+
+<!-- Mirrored from demo.harnishdesign.net/html/koice/index.html by HTTrack Website Copier/3.x [XR&CO'2014], Sun, 28 Jun 2020 13:55:14 GMT -->
+
+</html>

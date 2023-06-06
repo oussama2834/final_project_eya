@@ -1,0 +1,299 @@
+<!-- <app-calendrier [isAdmin]="true">
+
+</app-calendrier> -->
+
+    <!-- <app-header1></app-header1>
+
+
+
+
+      <div class="progress-wrap">
+         <svg class="progress-circle svg-content" width="100%" height="100%" viewBox="-1 -1 102 102">
+            <path d="M50,1 a49,49 0 0,1 0,98 a49,49 0 0,1 0,-98" />
+         </svg>
+      </div>
+
+      <div class="d-flex justify-content-start mb-4" style="margin-left: 1140px; margin-top: 100px;">
+        <div class="header__btn header__btn-2 ml-50 d-none d-sm-block text-right">
+            <a href="addcours"
+            class="e-btn blink" style="background-color: #0084ff;">Ajouter une seance</a>
+        </div>
+    </div>
+    <table class="table col-10"  style="text-align: center; margin-left: 130px; margin-top: 50px;" >
+        <thead>
+            <tr>
+
+                <th scope="col text-center">Nom de séance</th>
+                <th scope="col">Date début </th>
+                <th scope="col">Date fin</th>
+                <th scope="col">Prix (dt)</th>
+                <th scope="col">Enseignant</th>
+                <th  scope="col"></th>
+            </tr>
+        </thead>
+        <tbody *ngFor="let c of cours">
+            <tr >
+                <th scope="row">
+                    <div class="alert alert-light" role="alert">
+                    {{ c.nom}}
+                    </div>
+                </th>
+                <td>
+                    <div class="alert alert-light" role="alert">
+                      {{c.horaireDebut |date}}
+                    </div>
+                </td>
+                <td>
+                    <div class="alert alert-light" role="alert">
+                      {{c.horaireDebut | date}}
+                    </div>
+                </td>
+                <td>
+                    <div class="alert alert-light" role="alert">
+                      {{c.prixbillet}}
+                    </div>
+                </td>
+                 <td>
+                    <div class="alert alert-light" role="alert">
+                      {{c.enseignant.prenom}}&nbsp; {{c.enseignant.nom}}
+                    </div>
+                </td>
+                <td>
+                     <div class="alert alert-success" role="alert" *ngIf="cours?.etat==1">
+                        Validée
+                    </div>
+                    <div class="alert alert-warning" role="alert" *ngIf="cours?.etat==0">
+                        en cours ...
+                    </div>
+                    <div class="alert alert-danger" role="alert" *ngIf="cours?.etat==2">
+                        Annulée
+                    </div>
+                </td>
+                 <td>
+                    <div class="alert alert-success" role="alert"
+                    >
+                  Facture
+              </div>
+              </td>
+            </tr>
+
+        </tbody>
+    </table> -->
+
+    <!-- <div>
+        <div class="alert alert-primary" role="alert">
+            Pas des reservations!
+        </div>
+    </div> -->
+
+    <!doctype html>
+<html class="no-js" lang="zxx">
+  <app-header></app-header>
+
+   <body>
+     <!-- pre loader area start --><!--elli mlouel blkoll-->
+ <!-- <div id="loading">
+  <div id="loading-center">
+    <div id="loading-center-absolute">
+      <div class="loading-content">
+        <img class="loading-logo-text" src="assets/img/logo/2.png" alt="" style="width: 75%; height: 75%;">
+        <div class="loading-stroke">
+          <img class="loading-logo-icon" src="assets/img/logo/logo-icon.png" alt="">
+        </div>
+      </div>
+    </div>
+  </div>
+</div> -->
+<!-- pre loader area end -->
+
+      <!-- back to top start -->
+      <div class="progress-wrap">
+         <svg class="progress-circle svg-content" width="100%" height="100%" viewBox="-1 -1 102 102">
+            <path d="M50,1 a49,49 0 0,1 0,98 a49,49 0 0,1 0,-98" />
+         </svg>
+      </div>
+      <!-- back to top end -->
+
+      <main>
+
+         <!-- page title area start -->
+         <section class="page__title-area page__title-height page__title-overlay d-flex align-items-center" style="background-image:url(assets/img/events/event-1.jpg);">
+            <div class="container">
+               <div class="row">
+                  <div class="col-xxl-12">
+                     <div class="page__title-wrapper mt-110">
+                        <h3 class="page__title">Reservations</h3>
+                        <nav aria-label="breadcrumb">
+                           <ol class="breadcrumb">
+                              <li class="breadcrumb-item"><a href="">Acceuil</a></li>
+                              <li class="breadcrumb-item active" aria-current="page">Reservations</li>
+                           </ol>
+                        </nav>
+                     </div>
+                  </div>
+               </div>
+            </div>
+         </section>
+         <section class="services__area pt-115 pb-40">
+          <div class="container">
+             <div class="row">
+                <div class="col-xxl-6 offset-xxl-3 col-xl-6 offset-xl-3">
+                   <div class="section__title-wrapper section-padding mb-60 text-center">
+                      <h2 class="section__title">Les dernières compétences techniques. <br><span class="yellow-bg yellow-bg-big">À votre portée.<img src="assets/img/shape/yellow-bg.png" alt=""></span> </h2>
+                      <p>Vous n'avez pas à lutter seul, vous avez notre assistance et notre aide.</p>
+                   </div>
+                </div>
+                        <!-- Button on the left -->
+
+             </div>
+          </div>
+       </section>
+
+       <section class="course__area pt-100 pb-120 d-flex justify-content-center">
+        <div class="container" >
+
+            <!--carte cour-->
+            <div class="row justify-content-center">
+                <div class="col-xxl-12">
+                  <!-- <div class="d-flex justify-content-start mb-4" style="margin-left: 850px;">
+                    <div class="header__btn header__btn-2 ml-50 d-none d-sm-block text-right">
+                        <button class="e-btn blink" data-toggle="modal" data-target="#exampleModal"
+                         style="background-color: #0084ff;">Ajouter une seance</button>
+                    </div>
+                  </div> -->
+                  <table *ngIf="isEns" class="table col-12"
+                   style="text-align: center; margin-left: 30px;" >
+                    <thead>
+                        <tr>
+
+                            <th scope="col text-center">Etudiant</th>
+                            <th scope="col">Cours </th>
+                            <th scope="col">Date début</th>
+                            <th scope="col">Date fin</th>
+                            <th scope="col">Prix</th>
+                            <th scope="col">Action</th>
+
+                        </tr>
+                    </thead>
+                    <tbody  *ngFor="let res of reservations" >
+
+                        <tr >
+                            <th scope="row">
+                                <div class="alert alert-light" role="alert">
+                                  {{res.etudiant.prenom}}&nbsp; {{res.etudiant.nom}}
+                                </div>
+                            </th>
+                            <td>
+                              <div class="alert alert-light" role="alert">
+                                {{res.sessionCours.cours.nom}}
+                              </div>
+                          </td>
+                            <td>
+                                <div class="alert alert-light" role="alert">
+                                  {{res.sessionCours.horaireDebut|date:'dd/MM/yyyy HH:mm'}}
+                                </div>
+                            </td>
+
+                            <td>
+                                <div class="alert alert-light" role="alert">
+                                  {{res.sessionCours.horaireFin|date:'dd/MM/yyyy HH:mm'}}
+                                </div>
+                            </td>
+                            <td>
+                                <div class="alert alert-light" role="alert">
+                                  {{res.sessionCours.prixbillet}}
+                                </div>
+                            </td>
+                             <td >
+                                <div *ngIf="res.etat == 'En attente'"  class="alert alert-light" role="alert">
+                                <button class="btn btn-primary mr-2" (click)="valider(res.id)">Valider</button>
+
+                                <span>
+                                  <button class="btn btn-danger" (click)="refuser(res.id)">Refuser</button>
+                                </span>
+
+                                </div>
+                                <div *ngIf="res.etat !== 'En attente'"   class="alert"
+                                [ngClass]="{'alert-success' :res.etat == 'Validée',
+                                'alert-danger': res.etat == 'Réfusée','alert-warning': res.etat =='En attente'}"
+    
+                               role="alert" >
+                                 {{res.etat}}
+                             </div>
+                            </td>
+
+
+                        </tr>
+
+
+
+
+
+                  </tbody>
+                </table>
+                <table *ngIf="isEtu" class="table col-12"
+                style="text-align: center; margin-left: 30px;" >
+                 <thead>
+                     <tr>
+
+                         <th scope="col text-center">Etudiant</th>
+                         <th scope="col">Cours </th>
+                         <th scope="col">Date début</th>
+                         <th scope="col">Date fin</th>
+                         <th scope="col">Prix</th>
+                         <th scope="col">Statut</th>
+                     </tr>
+                 </thead>
+                 <tbody *ngFor="let res of reservationsForstudent">
+
+                     <tr  >
+                         <th scope="row">
+                             <div class="alert alert-light" role="alert">
+                               {{res.etudiant.prenom}}&nbsp; {{res.etudiant.nom}}
+                             </div>
+                         </th>
+                         <td>
+                           <div class="alert alert-light" role="alert">
+                             {{res.sessionCours.cours.nom}}
+                           </div>
+                       </td>
+                         <td>
+                             <div class="alert alert-light" role="alert">
+                               {{res.sessionCours.horaireDebut|date:'dd/MM/yyyy HH:mm'}}
+                             </div>
+                         </td>
+
+                         <td>
+                             <div class="alert alert-light" role="alert">
+                               {{res.sessionCours.horaireFin|date:'dd/MM/yyyy HH:mm'}}
+                             </div>
+                         </td>
+                         <td>
+                             <div class="alert alert-light" role="alert">
+                               {{res.sessionCours.prixbillet}}
+                             </div>
+                         </td>
+
+                         <td>
+                           <div class="alert"
+                            [ngClass]="{'alert-success' :res.etat == 'Validée',
+                            'alert-danger': res.etat == 'Réfusée','alert-warning': res.etat =='En attente'}"
+
+                           role="alert" >
+                             {{res.etat}}
+                         </div>
+                         </td>
+
+                     </tr>
+               </tbody>
+             </table>
+
+                </div>
+
+            </div>
+            <!--carte cour end-->
+        </div>
+    </section>
+
+
+

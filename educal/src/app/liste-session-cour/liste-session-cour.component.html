@@ -1,0 +1,65 @@
+<app-header1></app-header1>
+<div class="container mt-4">
+  <h1>Liste de Session de cours</h1>
+    <div class="row">
+      <label>Rechercher : </label>
+      <input type="text" placeholder="Entrez Domaine d'étude, Spécialité d'étude, Centre Intérêt..." class="form-control"
+        name="search" [(ngModel)]="searchText" />
+        <ng-container *ngFor="let session of listSessionCours  | filter:searchText ">
+            <div class="col-4 pt-3">
+              <div class="card text-center">
+                <div class="card-header">
+                    {{session.nom|titlecase}}    
+                </div>
+                <div class="card-body">
+                  <p> 
+                    <p-button (click)="showBasicDialog(session.affiche)" icon="pi pi-external-link" label="Voir Affiche"></p-button>    
+               
+              
+                    <button pButton type="button" label="Télécharger" (click)="download(session.affiche)" ></button></p>
+                  <p>Prix Entrée : {{session.prixbillet}}</p>
+                  <p>Date : {{session.date | date: 'dd/MM/yyyy'}}</p>
+                  <p>Enseignant : {{session.enseignant.nom}} {{session.enseignant.prenom}}</p>
+                </div>
+                <div class="card-footer text-muted">
+                    <button type="button" class="btn btn-primary" [routerLink]="['/detailsessioncours', session.id]" style="margin-right: 20px;">details</button>
+
+                </div>
+            </div>
+            </div>
+            </ng-container>
+    </div>
+</div>
+
+
+<p-dialog header="Header" [visible]="displayBasic" [breakpoints]="{'960px': '75vw', '640px': '100vw'}"  [style]="{width: '50vw'}">
+  <div > 
+  <pdf-viewer id="pdfdiv" #pdfdiv  style="    width: 100%;
+           background: red;
+           height: 1072px;" [src]="affiche"
+             [original-size]="false"
+ ></pdf-viewer>
+ </div>
+
+<button onclick="demo1()"></button>
+<a [href]="affiche"></a>
+  
+   <ng-template pTemplate="footer">
+       <p-button icon="pi pi-check" (click)="displayBasic=false" label="Ok" styleClass="p-button-text"></p-button> <!--assigning the value false to the displayBasic property when the button is clicked.-->
+   </ng-template>
+</p-dialog>
+<script type="text/javascript">
+
+function demo1() {
+    jsPDF.init();
+    jsPDF.addPage();
+    jsPDF.text(20, 20, 'Hello world!');
+    jsPDF.text(20, 30, 'This is client-side Javascript, pumping out a PDF.');
+
+    // Making Data URI
+    var out = jsPDF.output();
+    var url = 'data:application/pdf;base64,' + Base64.encode(out);
+
+    document.location.href = url;
+ }
+</script>

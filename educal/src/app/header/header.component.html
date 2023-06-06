@@ -1,0 +1,59 @@
+<!-- header area start -->
+  <header>
+   <div id="header-sticky" class="header__area header__transparent header__padding">
+      <div class="container-fluid">
+         <div class="row align-items-center">
+            <div class="col-xxl-3 col-xl-3 col-lg-4 col-md-2 col-sm-4 col-6">
+               <div class="header__left d-flex">
+                  <div class="logo">
+                      <a href="index.html">
+                         <img class="logo-white" src="assets/img/logo/2-.png" alt="logo"  style="width: 88%; height: 82%;">
+                         <img class="logo-black" src="assets/img/logo/2-.png" alt="logo" style="width: 88%; height: 82%;">
+                      </a>
+                   </div>
+                </div>
+             </div>
+             <div class="col-xxl-9 col-xl-9 col-lg-8 col-md-10 col-sm-2">
+                <div class="header__right d-flex justify-content-end align-items-center">
+                   <div class="main-menu main-menu-3">
+                      <nav id="mobile-menu">
+                         <ul>
+                            <li ><a href="">Acceuil</a></li>
+
+                            <li><a href="about">Qui sommes-nous?</a></li>
+
+                            <li *ngIf="idEtudiant || idEnseignant"><a href="cours">cours</a></li>
+                            <li *ngIf="idEtudiant || idEnseignant"><a href="ajouter-seance">seances</a></li>
+                            <li *ngIf="idEtudiant || idEnseignant"><a href="reservations">reservations</a></li>
+
+                            <li *ngIf="idEtudiant"><a href="contact">Contact</a></li>
+                            <li *ngIf="idEnseignant"><a href="contact">Contact</a></li>
+
+                         </ul>
+                      </nav>
+                   </div>
+
+                   <!--barre de recherche-->
+
+                   <div *ngIf="!idEtudiant && !idEnseignant"
+                    class="header__btn header__btn-2 ml-50 d-none d-sm-block">
+                     <a href="connect" class="e-btn">Se connecter</a>
+               </div>
+
+                <div *ngIf=" idEtudiant || idEnseignant" class="header__btn header__btn-2 ml-50 d-none d-sm-block">
+                     <a  href="javascript:void(0)" class="e-btn" (click)="deconnexion()" >Se deconnecter</a>
+               </div>
+                   <div class="sidebar__menu d-xl-none">
+                      <div class="sidebar-toggle-btn ml-30" id="sidebar-toggle">
+                          <span class="line"></span>
+                          <span class="line"></span>
+                          <span class="line"></span>
+                      </div>
+                  </div>
+                </div>
+             </div>
+          </div>
+       </div>
+    </div>
+ </header>
+ <!-- header area end -->
