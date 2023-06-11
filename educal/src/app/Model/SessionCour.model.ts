@@ -13,6 +13,9 @@ export class SessionCours {
     public enseignant?: Enseignant;
   public domaineEtude?: DomaineEtude;
   public cours?: Cour;
+  public nombre?: number;
+  public nbr_places?:number;
+  public seance_rejoint?:boolean;
 
     constructor() {}
 }

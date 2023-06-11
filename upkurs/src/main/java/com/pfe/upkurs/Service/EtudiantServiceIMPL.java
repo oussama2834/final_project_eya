@@ -1,7 +1,9 @@
 package com.pfe.upkurs.Service;
 
 import com.pfe.upkurs.Entites.Etudiant;
+import com.pfe.upkurs.Entites.Reservation;
 import com.pfe.upkurs.Repository.EtudiantRepository;
+import com.pfe.upkurs.Repository.ReservationRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -12,6 +14,8 @@ import java.util.Optional;
 public class EtudiantServiceIMPL implements EtudiantService{
     @Autowired
     EtudiantRepository etudiantRepository;
+    @Autowired
+    ReservationRepository reservationRepository;
 
 
     @Override
@@ -27,6 +31,11 @@ public class EtudiantServiceIMPL implements EtudiantService{
 
     @Override
     public void SupprimerEtudiants(Long id) {
+        List<Reservation> reservations = reservationRepository.findReservationByEtudiantId(id);
+        if (reservations != null){
+            reservationRepository.deleteAll(reservations);
+            etudiantRepository.deleteById(id);
+        }
         etudiantRepository.deleteById(id);
 
 

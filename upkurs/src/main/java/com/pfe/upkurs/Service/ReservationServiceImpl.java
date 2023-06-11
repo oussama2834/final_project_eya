@@ -1,8 +1,5 @@
 package com.pfe.upkurs.Service;
-import com.pfe.upkurs.Entites.Enseignant;
-import com.pfe.upkurs.Entites.Etudiant;
-import com.pfe.upkurs.Entites.Reservation;
-import com.pfe.upkurs.Entites.ValidateSessionRq;
+import com.pfe.upkurs.Entites.*;
 import com.pfe.upkurs.Repository.ReservationRepository;
 import com.pfe.upkurs.Repository.SessionCoursRepository;
 import jakarta.mail.MessagingException;
@@ -31,10 +28,17 @@ public class ReservationServiceImpl implements ReservationService{
 
     @Autowired
     private JavaMailSender mailSender;
+    @Autowired
+    private SessionCoursRepository sessionCoursRepository;
 
     @Override
-    public Reservation ajouterReservation(Reservation reservation) {
-
+    public Reservation ajouterReservation(Reservation reservation,Long id) {
+        SessionCours seance = sessionCoursRepository.findById(id).get();
+              seance.setSeance_rejoint(true);
+            int nbr = seance.getNbr_places();
+            seance.setNbr_places(++nbr);
+            sessionCoursRepository.save(seance);
+        reservation.setSessionCours(seance);
         reservation.setEtat("En attente");
 
         return reservationRepository.save(reservation);

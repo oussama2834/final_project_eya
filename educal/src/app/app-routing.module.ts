@@ -21,6 +21,12 @@ import { DetailcourComponent } from './detailcour/detailcour.component';
 import { CalendrierComponent } from './calendrier/calendrier.component';
 import { ReservationsenseignantComponent } from './reservationsenseignant/reservationsenseignant.component';
 import { MessagesComponent } from './messages/messages.component';
+import { ListEnseignantComponent } from './list-enseignant/list-enseignant.component';
+import { ListEtudiantComponent } from './list-etudiant/list-etudiant.component';
+import { ListContactComponent } from './list-contact/list-contact.component';
+import { AjouterenseignantComponent } from './ajouterenseignant/ajouterenseignant.component';
+import { AjouteretudiantComponent } from './ajouteretudiant/ajouteretudiant.component';
+import { SeanceformationComponent } from './seanceformation/seanceformation.component';
 
 const routes: Routes = [
   { path: '', component: HomeComponent },
@@ -46,6 +52,7 @@ const routes: Routes = [
   {path:'facture/:id',component:FactureComponent},
 
   {path:'ajouter-seance',component:AjouterSeanceComponent},
+  {path:'seance',component:SeanceformationComponent},
   {path:'reserver-seance',component:ReserverFromCalendrierComponent},
   {path:'mes-reservations',component:MyReservationComponent},
   {path:'validate-reservations',component:ValidateReservationComponent},
@@ -56,6 +63,12 @@ const routes: Routes = [
 
   {path:'calendrier' , component : CalendrierComponent},
   {path:'messages' , component : MessagesComponent},
+  {path:'listEnseignant' , component : ListEnseignantComponent},
+  {path:'listEtudiant' , component : ListEtudiantComponent},
+  {path:'listContact' , component : ListContactComponent},
+  {path:'ajouterenseignant' , component : AjouterenseignantComponent},
+  {path:'ajouteretudiant' , component : AjouteretudiantComponent},
+  {path:'facture/:id' , component : FactureComponent},
 
 ];
 

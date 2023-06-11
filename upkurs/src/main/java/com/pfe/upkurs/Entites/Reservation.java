@@ -25,8 +25,7 @@ public class Reservation {
 
     private SessionCours cours;
 
-    @ManyToOne
-    private Enseignant enseignant;
+
 
     @ManyToOne
     private SessionCours sessionCours;

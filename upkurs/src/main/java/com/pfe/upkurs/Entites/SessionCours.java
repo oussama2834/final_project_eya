@@ -22,10 +22,14 @@ public class SessionCours {
     private Date date;
     private String horaireDebut;
     private String horaireFin;
+    private int nombre;
+    private int nbr_places =0;
+    private boolean seance_rejoint = false;
 
     @ManyToOne
      private Cours cours;
     @ManyToOne
     private Enseignant enseignant;
+
 }
 

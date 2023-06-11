@@ -14,6 +14,7 @@ import { NgToastService } from 'ng-angular-popup';
 export class ReservationsenseignantComponent {
   reservations: Reservation[] = [];
   reservationsForstudent: Reservation[] = [];
+  reservationsforEns: Reservation[] = [];
   isEtu:boolean=false //mta deconnexion
   isEns:boolean=false //mta deconnexion
   totalCour: number = 0
@@ -34,8 +35,11 @@ export class ReservationsenseignantComponent {
   this.service.getAllreservations().subscribe(
   data =>{
       this.reservations = data;
-      this.reservationsForstudent = this.reservations.filter(res => res.etudiant.id === this.idEtudiant)
-    console.log(this.reservations)
+      console.log(this.reservations)
+      this.reservationsforEns = this.reservations.filter(res => res.sessionCours.enseignant.id == this.idEnseignant)
+      this.reservationsForstudent =
+        this.reservations.filter(res => res.etudiant.id === this.idEtudiant)
+    console.log(this.reservationsforEns)
     console.log(this.reservationsForstudent)
   }
   )

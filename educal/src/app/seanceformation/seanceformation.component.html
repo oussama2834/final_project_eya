@@ -1,0 +1,533 @@
+<!doctype html>
+<html class="no-js" lang="zxx">
+
+  <body>
+     <app-header></app-header>
+
+
+      <!-- back to top start -->
+      <div class="progress-wrap">
+         <svg class="progress-circle svg-content" width="100%" height="100%" viewBox="-1 -1 102 102">
+            <path d="M50,1 a49,49 0 0,1 0,98 a49,49 0 0,1 0,-98" />
+         </svg>
+      </div>
+      <!-- back to top end -->
+
+      <main>
+
+         <!-- page title area start -->
+         <section class="page__title-area page__title-height page__title-overlay d-flex align-items-center" style="background-image:url(assets/img/events/event-1.jpg);">
+            <div class="container">
+               <div class="row">
+                  <div class="col-xxl-12">
+                     <div class="page__title-wrapper mt-110">
+                        <h3 class="page__title">Seances</h3>
+                        <nav aria-label="breadcrumb">
+                           <ol class="breadcrumb">
+                              <li class="breadcrumb-item"><a href="">Acceuil</a></li>
+                              <li class="breadcrumb-item active" aria-current="page">Seances</li>
+                           </ol>
+                        </nav>
+                     </div>
+                  </div>
+               </div>
+            </div>
+         </section>
+         <section class="services__area pt-115 pb-40">
+          <div class="container">
+             <div class="row">
+                <div class="col-xxl-6 offset-xxl-3 col-xl-6 offset-xl-3">
+                   <div class="section__title-wrapper section-padding mb-60 text-center">
+                      <h2 class="section__title">Les dernières compétences techniques. <br><span class="yellow-bg yellow-bg-big">À votre portée.<img src="assets/img/shape/yellow-bg.png" alt=""></span> </h2>
+                      <p>Vous n'avez pas à lutter seul, vous avez notre assistance et notre aide.</p>
+                   </div>
+                </div>
+                        <!-- Button on the left -->
+
+             </div>
+          </div>
+       </section>
+
+       <section class="course__area pt-100 pb-120 d-flex justify-content-center">
+        <div class="container" >
+
+            <!--carte cour-->
+            <div class="row justify-content-center">
+                <div class="col-xxl-12">
+                  <div *ngIf="isEns" class="d-flex justify-content-start mb-4" style="margin-left: 850px;">
+
+                    <div class="header__btn header__btn-2 ml-50 d-none d-sm-block text-right">
+                        <button class="e-btn blink" data-toggle="modal" data-target="#exampleModal"
+                         style="background-color: #0084ff;">Ajouter une seance</button>
+                    </div>
+                  </div>
+                  <table *ngIf="idEtudiant" class="table col-12"
+                   style="text-align: center; margin-left: 30px;" >
+                    <thead>
+                        <tr >
+
+                            <th scope="col text-center">Nom de séance</th>
+                            <th scope="col text-center">Cours</th>
+                            <th scope="col">Date début </th>
+                            <th scope="col">Date fin</th>
+                            <th scope="col">Prix (dt)</th>
+                            <th scope="col">Enseignant</th>
+                            <th  scope="col">Actions</th>
+                        </tr>
+                    </thead>
+                    <tbody *ngFor="let c of seances">
+                        <tr >
+                            <th scope="row">
+                                <div class="alert alert-light" role="alert">
+                                {{ c.nom}}
+                                </div>
+                            </th>
+                            <td>
+                                <div class="alert alert-light" role="alert">
+                                  {{c.cours.nom }}
+                                </div>
+                            </td>
+                            <td>
+                                <div class="alert alert-light" role="alert">
+                                  {{c.horaireDebut |date}}
+                                </div>
+                            </td>
+                            <td>
+                                <div class="alert alert-light" role="alert">
+                                  {{c.horaireDebut | date}}
+                                </div>
+                            </td>
+                            <td>
+                                <div class="alert alert-light" role="alert">
+                                  {{c.prixbillet}}
+                                </div>
+                            </td>
+                             <td>
+                                <div class="alert alert-light" role="alert">
+                                  {{c.enseignant.prenom}}&nbsp; {{c.enseignant.nom}}
+                                </div>
+                            </td>
+                            <td>
+                              <span >
+                              <button class="btn btn-primary"
+                              data-toggle="modal"
+                               (click)="getSeance(c)"
+                              data-target="#staticBackdrop"
+                              >rejoindre</button>
+                              <!-- <p
+                              class="alert alert-success">Rejoint</p> -->
+                            </span>
+                            </td>
+                            <!-- <td>
+                                 <div class="alert alert-success" role="alert" >
+                                    Validée
+                                </div>
+                                <div class="alert alert-warning" role="alert">
+                                    en cours ...
+                                </div>
+                                <div class="alert alert-danger" role="alert">
+                                    Annulée
+                                </div>
+                            </td>
+                             <td>
+                                <div class="alert alert-success" role="alert"
+                                >
+                              Facture
+                          </div>
+                          </td> -->
+                        </tr>
+                        <!-- Modal -->
+
+
+
+                    </tbody>
+                </table>
+
+
+
+
+                <table *ngIf="idEnseignant" class="table col-12"
+                   style="text-align: center; margin-left: 30px;" >
+                    <thead>
+                        <tr>
+
+                            <th scope="col text-center">Nom de séance</th>
+                            <th scope="col text-center">Cours</th>
+                            <th scope="col">Date début </th>
+                            <th scope="col">Date fin</th>
+                            <th scope="col">Prix (dt)</th>
+                            <th scope="col">Enseignant</th>
+                            <th scope="col">Action</th>
+
+
+                        </tr>
+                    </thead>
+                    <tbody *ngFor="let c of seancesParEns">
+                        <tr >
+                            <th scope="row">
+                                <div class="alert alert-light" role="alert">
+                                {{ c.nom}}
+                                </div>
+                            </th>
+                            <td>
+                                <div class="alert alert-light" role="alert">
+                                  {{c.cours.nom }}
+                                </div>
+                            </td>
+                            <td>
+                                <div class="alert alert-light" role="alert">
+                                  {{c.horaireDebut |date}}
+                                </div>
+                            </td>
+                            <td>
+                                <div class="alert alert-light" role="alert">
+                                  {{c.horaireDebut | date}}
+                                </div>
+                            </td>
+                            <td>
+                                <div class="alert alert-light" role="alert">
+                                  {{c.prixbillet}}
+                                </div>
+                            </td>
+                             <td>
+                                <div class="alert alert-light" role="alert">
+                                  {{c.enseignant.prenom}}&nbsp; {{c.enseignant.nom}}
+                                </div>
+                            </td>
+                            <td>
+                              <div class="form-group" style="display: flex;">
+                              <button class="btn btn-primary mr-2" (click)="getSessioncours(c)"
+                               data-toggle="modal" data-target="#edit">
+                                 <i class="fas fa-edit"></i>
+
+                              </button>
+
+                                <button class="btn btn-danger" (click)="delete(c.id)">
+                                   <i class="fas fa-trash"></i>
+                                </button>
+
+
+                            </div>
+                            </td>
+
+
+
+                            <!-- <td>
+                                 <div class="alert alert-success" role="alert" >
+                                    Validée
+                                </div>
+                                <div class="alert alert-warning" role="alert">
+                                    en cours ...
+                                </div>
+                                <div class="alert alert-danger" role="alert">
+                                    Annulée
+                                </div>
+                            </td>
+                             <td>
+                                <div class="alert alert-success" role="alert"
+                                >
+                              Facture
+                          </div>
+                          </td> -->
+                        </tr>
+
+                    </tbody>
+                </table>
+
+
+
+
+                </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+            </div>
+            <!--carte cour end-->
+        </div>
+        <div class="modal fade" id="exampleModal" tabindex="-1"
+        role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+         <div class="modal-dialog" role="document">
+           <div class="modal-content">
+             <div class="modal-header">
+               <!-- <h5 class="modal-title" id="exampleModalLabel">Modal title</h5> -->
+               <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                 <span aria-hidden="true">&times;</span>
+               </button>
+             </div>
+             <div class="modal-body">
+              <div class="your-order mb-30 align-items-center">
+                <h3>Ajouter seance</h3>
+                <div class="card-body">
+                  <div class="live-preview">
+                      <div class="row gy-4">
+                          <!-- <div>
+                              <label for="labelInput" class="form-label">Logo</label>
+                              <input type="file" class="form-control" accept="image/*" (change)="onSelectFile($event);" [(ngModel)]="newCour.logo" id="labelInput"  >
+                          </div> -->
+                          <!--end col-->
+                          <div>
+                            <label for="basiInput" class="form-label">Nom</label>
+                            <input type="text" placeholder="Entrer le nom" class="form-control" id="basiInput"  name="nom"
+                             [(ngModel)]="seance.nom">
+                        </div>
+
+
+                        <!--end col-->
+
+                        <div>
+                          <label for="basiInput" class="form-label">Date debut</label>
+                          <input type="datetime-local" class="form-control" id="exampleFormControlTextarea5"
+                            name="horaireDebut" [(ngModel)]="seance.horaireDebut"></div>
+
+                          <!--end col-->
+
+                        <div>
+                          <label for="basiInput" class="form-label">Date fin</label>
+                          <input type="datetime-local" class="form-control"
+                           id="exampleFormControlTextarea5"
+                            name="horaireFin" [(ngModel)]="seance.horaireFin"></div>
+
+
+                          <div>
+                              <label for="exampleInputpassword" class="form-label">Prix (Dt)
+                              </label>
+                              <input type="text" placeholder="Entrer le prix" class="form-control" id="basiInput" value="00.000DT"
+                               name="prix" [(ngModel)]="seance.prixbillet">
+                          </div>
+                          <div>
+                            <label for="exampleInputpassword" class="form-label">Cours
+                            </label>
+                            <select class="form-control" placeholder="Entrer le cours"  name="cours" [(ngModel)]="seance.cours">
+                              <option *ngFor="let c of cours" [ngValue]="c">{{c.nom}}</option>
+                            </select>
+                        </div>
+
+                        <div>
+                          <label for="exampleInputpassword" class="form-label">Nombre des étudiants
+                          </label>
+                          <input type="number" placeholder="Entrer le nombre des étudiants" class="form-control" id="basiInput"
+                           name="nombre" [(ngModel)]="seance.nombre">
+                      </div>
+
+                      </div>
+
+                      <!--end row-->
+                  </div>
+                  <br>
+                  <br>
+                  <div class="col-xxl-12 text-right">
+                   <button type="submit" class="e-btn" data-dismiss="modal"  (click)="save()" >Enregistrer</button>
+               </div>
+              </div>
+
+              </div>
+             </div>
+
+           </div>
+         </div>
+       </div>
+    </section>
+
+
+
+
+
+
+
+
+   <div class="modal fade" id="edit" tabindex="-1"
+   role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <!-- <h5 class="modal-title" id="exampleModalLabel">Modal title</h5> -->
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+         <div class="your-order mb-30 align-items-center">
+           <h3>Modifier seance</h3>
+           <div class="card-body">
+             <div class="live-preview">
+                 <div class="row gy-4">
+                     <!-- <div>
+                         <label for="labelInput" class="form-label">Logo</label>
+                         <input type="file" class="form-control" accept="image/*" (change)="onSelectFile($event);" [(ngModel)]="newCour.logo" id="labelInput"  >
+                     </div> -->
+                     <!--end col-->
+                     <div>
+                       <label for="basiInput" class="form-label">Nom</label>
+                       <input type="text" class="form-control" id="basiInput"  name="nom"
+                        [(ngModel)]="seance_edited.nom">
+                   </div>
+
+
+                   <!--end col-->
+
+                   <div>
+                     <label for="basiInput" class="form-label">Date debut</label>
+                     <input type="datetime-local" class="form-control" id="exampleFormControlTextarea5"
+                       name="horaireDebut" [(ngModel)]="seance_edited.horaireDebut"></div>
+
+                     <!--end col-->
+
+                   <div>
+                     <label for="basiInput" class="form-label">Date fin</label>
+                     <input type="datetime-local" class="form-control"
+                      id="exampleFormControlTextarea5"
+                       name="horaireFin" [(ngModel)]="seance_edited.horaireFin"></div>
+
+
+                     <div>
+                         <label for="exampleInputpassword" class="form-label">Prix (Dt)
+                         </label>
+                         <input type="text" class="form-control" id="basiInput" value="00.000DT"
+                          name="prix" [(ngModel)]="seance_edited.prixbillet">
+                     </div>
+                     <div>
+                       <label for="exampleInputpassword" class="form-label">Cours
+                       </label>
+                       <select class="form-control"  name="cours" [(ngModel)]="seance_edited.cours">
+                         <option *ngFor="let c of cours" [ngValue]="c">{{c.nom}}</option>
+                       </select>
+                   </div>
+
+                 </div>
+
+                 <!--end row-->
+             </div>
+             <br>
+             <br>
+             <div class="col-xxl-12 text-right">
+              <button type="submit" class="e-btn" data-dismiss="modal"  (click)="edit()" >Enregistrer</button>
+          </div>
+         </div>
+
+         </div>
+        </div>
+
+      </div>
+    </div>
+  </div>
+
+    <div
+    class="modal fade"
+    id="staticBackdrop"
+    data-backdrop="static"
+    data-keyboard="false"
+    tabindex="-1"
+    aria-labelledby="staticBackdropLabel"
+    aria-hidden="true"
+  >
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-body">
+          <div class="text-right">
+            <i class="fa fa-times"  data-dismiss="modal" aria-hidden="true"></i>
+
+          </div>
+          <div class="tabs mt-3">
+            <div class="tab-content" id="myTabContent">
+              <div
+                class="tab-pane fade show active"
+                id="visa"
+                role="tabpanel"
+                aria-labelledby="visa-tab"
+              >
+                <div class="mt-4 mx-4">
+                  <div class="text-center">
+                    <h5 *ngIf="IsAvailableplaces">Payer la seance</h5>
+                    <h5 *ngIf="!IsAvailableplaces">Places indisponibles</h5>
+                  </div>
+                  <div class="form mt-3">
+                    <div class="inputbox">
+                      <span
+                        type="text"
+                        name="name"
+                        class="form-control"
+                        disabled
+                        required="required">
+                        Prix de la seance
+                        <span style="margin-left: 210px;" class="text-muted">
+                          {{_seance.prixbillet}}DT
+                        </span>
+                      </span>
+
+
+
+
+
+
+
+                      <!-- <span class="text-muted"
+                       style="margin-left: 320px;">{{_seance.prixbillet}}DT</span> -->
+                    </div>
+                    <div class="inputbox mt-4">
+                      <span
+
+                        type="text"
+                        name="name"
+                        min="1"
+                        max="999"
+                        class="form-control"
+                        required="required"
+                        disabled
+                      >  Date debut
+                      <span class="text-muted" style="margin-left: 220px;">{{_seance.horaireDebut |date}}</span>
+
+                    </span>
+
+                    </div>
+                    <div class="inputbox mt-4">
+                      <span
+
+                        type="text"
+                        name="name"
+                        min="1"
+                        max="999"
+                        class="form-control"
+                        required="required"
+                        disabled
+                      >Date fin
+                      <span class="text-muted" style="margin-left: 235px;">{{_seance.horaireFin |date}}</span>
+
+                    </span>
+
+                    </div>
+                    <div class="d-flex flex-row"></div>
+                    <div class="px-5 pay mt-4">
+                      <br>
+                      <button *ngIf="IsAvailableplaces" data-dismiss="modal" [routerLink]="['../facture',_seance.id]"
+                        class="btn btn-success btn-block"
+                       (click)="rejoindre()"
+                      >
+                        Payer
+                      </button>
+                       <p  *ngIf="!IsAvailableplaces"
+                              class="alert alert-danger mt-3">Il n'ya pas encore des places disponibles</p>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</main>
+</body>
+</html>

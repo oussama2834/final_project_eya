@@ -21,7 +21,9 @@ export class CrudService {
 //mta3 header 1
   private _etudientConnect= new Subject<void>();
   isConnected=false;
-
+  isAvailableplaces(id:number) {
+  return this.http.get<boolean>("http://localhost:8081/api/sessionCour/availableplaces/"+id)
+  }
   get etudientConnect()
   {
     return this._etudientConnect
@@ -48,6 +50,18 @@ private _EtuConnect=new Subject<void>();
   loginEtudiantUrl="http://localhost:8081/api/etudiant/login"
   constructor(private http:HttpClient,public router:Router,private toast:NgToastService) {
   }
+  editEtudiant(id :number,etudiant:Etudiant) {
+    return this.http.put<any>(this.apiUrl+"/etudiant/"+id,etudiant)
+  }
+  deleteEtudiant(id :number) {
+    return this.http.delete<any>(this.apiUrl+"/etudiant/"+id)
+  }
+  deleteEnseignant(id: number) {
+    return this.http.delete<any>(this.apiUrl+"/enseignant/"+id)
+  }
+  editEnseignant(id: number, enseignant: Enseignant) {
+    return this.http.put<any>(this.apiUrl+"/enseignant/"+id,enseignant)
+  }
  //deconnexion ens
  loginEns(enseignant:Enseignant){
   this.loginEnseignant(enseignant).subscribe((data:any) =>{
@@ -59,7 +73,7 @@ private _EtuConnect=new Subject<void>();
     this.toast.success({
       summary: 'Bienvenue',
     });
-  }, 
+  },
   error => {
     console.log(error)
     this.toast.error({
@@ -67,8 +81,8 @@ private _EtuConnect=new Subject<void>();
     });
   }
   )
-  
-  
+
+
  }
  //deconnexion ens
  loginEnsp(data:any){
@@ -97,7 +111,7 @@ loginEnseignant(enseignant:Enseignant){
     this.toast.error({
       summary: 'Login echoué vérifiez bien votre mail et mot de passe',
     });
-  } 
+  }
   )
  }
   //deconnexion etu
@@ -262,8 +276,8 @@ getAllreservations(){
  getAllReservationbyEtudientId(){
     return this.http.get<any>( "http://localhost:8081/api/reservation/get-all-by-id-etudient/"+localStorage.getItem("idEtu") , this.httpOptions);
   }
-  reserverFromApi(reservation :Reservation){
-    return this.http.post<any>( "http://localhost:8081/api/reservation" ,reservation ,this.httpOptions);
+  reserverFromApi(reservation :Reservation,id:number){
+    return this.http.post<any>( "http://localhost:8081/api/reservation/ajout/"+id ,reservation ,this.httpOptions);
   }
   validerOuAnnulerFromApi(rq:any){
     return this.http.put<any>( "http://localhost:8081/api/reservation/validate-reservation" ,rq ,this.httpOptions);

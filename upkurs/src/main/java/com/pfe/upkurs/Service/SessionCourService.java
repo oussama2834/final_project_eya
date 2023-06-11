@@ -11,6 +11,7 @@ public interface SessionCourService {
     SessionCours miseAjourSessionCours(SessionCours sessionCours);
     SessionCours modifierSessionCours(SessionCours sessionCours);
     void supprimerSessionCours(Long id);
+    Boolean IsAvailablePlaces(Long id);
     List<SessionCours> listeSessionCours();
 
     Optional<SessionCours> getSessionCoursById(Long id);

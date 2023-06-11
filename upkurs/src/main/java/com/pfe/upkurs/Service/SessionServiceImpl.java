@@ -61,6 +61,18 @@ public class SessionServiceImpl implements SessionCourService{
     }
 
     @Override
+    public Boolean IsAvailablePlaces(Long id ) {
+        SessionCours sessionCours =  sessionCoursRepository.findById(id).get();
+        if (sessionCours != null) {
+            if (sessionCours.getNbr_places() == sessionCours.getNombre()) {
+                return false;
+            }
+            return true;
+        }
+        return null;
+    }
+
+    @Override
     public List<SessionCours> listeSessionCours() {
         return sessionCoursRepository.findAll();
     }

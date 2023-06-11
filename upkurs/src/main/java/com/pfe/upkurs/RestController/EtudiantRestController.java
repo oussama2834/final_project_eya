@@ -56,11 +56,21 @@ public class EtudiantRestController {
     }
 
     @RequestMapping(value = "/{id}", method = RequestMethod.PUT)
-    public Etudiant ModifierEtudiants(@PathVariable("id") Long id, @RequestBody Etudiant etudiant) {
-        etudiant.setMdp(this.bCryptPasswordEncoder.encode(etudiant.getMdp()));
-        Etudiant saveduser = etudiantRepository.save(etudiant);
-        Etudiant newEtudiant = etudianttService.ModifierEtudiants(etudiant);
-        return newEtudiant;
+    public Etudiant ModifierEtudiants(@PathVariable("id") Long id, @RequestBody Etudiant etudiantbody) {
+        Optional<Etudiant> etudiantoptional = etudiantRepository.findById(id);
+        if (etudiantoptional.isPresent()){
+            Etudiant etudiant = etudiantoptional.get();
+            etudiant.setMdp(this.bCryptPasswordEncoder.encode(etudiantbody.getMdp()));
+            etudiant.setNom(etudiantbody.getNom());
+            etudiant.setPrenom(etudiantbody.getPrenom());
+            etudiant.setCin(etudiantbody.getCin());
+            etudiant.setAdresse(etudiantbody.getAdresse());
+            Etudiant saveduser = etudiantRepository.save(etudiant);
+            Etudiant newEtudiant = etudianttService.ModifierEtudiants(etudiant);
+            return newEtudiant;
+        }
+        return null;
+
     }
 
 

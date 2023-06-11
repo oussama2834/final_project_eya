@@ -51,7 +51,7 @@
         <!-- end ben nrodha facture w 3liha lklem-->
 <body>
        <!-- pre loader area start --><!--elli mlouel blkoll-->
-       <div id="loading">
+       <!-- <div id="loading">
         <div id="loading-center">
           <div id="loading-center-absolute">
             <div class="loading-content">
@@ -62,7 +62,7 @@
             </div>
           </div>
         </div>  
-      </div>
+      </div> -->
      <!-- pre loader area end -->
 
      <!-- back to top start -->
@@ -91,7 +91,7 @@
         <main>
             <div class="row">
                 <div class="col-sm-6"><strong>Date:</strong> {{this.date | date:'mediumDate'}}</div>
-                <div class="col-sm-6 text-sm-right"> <strong>Facture N°:</strong>{{this.data?.id}}</div>
+                <div class="col-sm-6 text-sm-right"> <strong>Facture N°:</strong>{{this.data.id}}</div>
 
             </div>
             <hr>
@@ -104,7 +104,9 @@
     Nabeul, Nabeul
       </address>
                 </div>
-                <div class="col-sm-6 order-sm-0 "> <strong>Facture a :</strong>
+                <div class="col-sm-6 order-sm-0 "> <strong>Facture à :</strong>
+                  <p>{{etudiant.prenom}}&nbsp;{{etudiant.nom}}</p>
+                  <p>{{etudiant.email}}</p>
                      
                 <!--    <qr-code [value]="data?.enseignant.email"></qr-code>   -->
 
@@ -116,11 +118,11 @@
                     <table class="table ">
                         <thead>
                             <tr>
-                                <td class=" border-0 " style="
-                                width: 294px;
-                            "><strong>Cours</strong></td>
-                                <td class="border-0  text-center"><strong>Date</strong></td>
-                                <td class=" border-0 text-center"><strong>Prix</strong></td>
+                                <td class=" border-0 "
+                            ><strong>Cours</strong></td>
+                                <td class="border-0  text-left"><strong>Date Debut</strong></td>
+                                <td class="border-0  text-left"><strong>Date Fin</strong></td>
+                                <td class=" border-0 text-right"><strong>Prix</strong></td>
                                    </tr>
                         </thead>
                     </table>
@@ -130,9 +132,10 @@
                         <table class="table">
                             <tbody>
                                <tr> 
-                                <td class="border-0 text-right">{{data?.cours.nom}}</td>
-                                <td class="border-0 text-right">{{data?.cours.date |date}}</td>
-                                    <td class=" border-0  text-center">{{data?.cours.prixbillet}} DT</td>
+                                <td class="border-0 text-left">{{data.cours.nom}}</td>
+                                <td class="border-0 text-left">{{data.horaireDebut |date:'dd/MM/yyyy HH:mm'}}</td>
+                                <td class="border-0 text-right ">{{data.horaireFin |date:'dd/MM/yyyy HH:mm'}}</td>
+                                    <td class=" border-0  text-right">{{data.prixbillet}} DT</td>
                                       </tr>
 
                             </tbody>

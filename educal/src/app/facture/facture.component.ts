@@ -1,6 +1,8 @@
 import { Component, DoCheck, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { CalendrierService } from '../service/calendrier.service';
+import { CrudService } from 'app/service/crud.service';
+import { Etudiant } from 'app/Model/etudiant.model';
 
 @Component({
   selector: 'app-facture',
@@ -11,15 +13,22 @@ export class FactureComponent implements OnInit {
   date: Date = new Date();
   message = ""
   data: any;
-  constructor(public service: CalendrierService, private route: ActivatedRoute, private router: Router) { }
+  idEtudiant!: number;
+  etudiant = new Etudiant();
+  constructor(private servicecrud :CrudService , public service: CalendrierService, private route: ActivatedRoute, private router: Router) { }
 
   id: any
 
-  async ngOnInit(): Promise<void> {
+   ngOnInit()  {
     // this.date = new Date()
-
+     this.idEtudiant = Number(localStorage.getItem("idEtu"));
+     this.servicecrud.findEtudiantById(this.idEtudiant).subscribe(res => {
+       this.etudiant = res
+       console.log(this.etudiant)
+     })
     this.id = this.route.snapshot.params['id']
-    await this.service.getById(this.id).subscribe({
+    console.log(this.id)
+     this.service.getByIdsession(this.id).subscribe({
       next: (res: any) => {
         this.data = res;
         console.log(this.data)
@@ -27,6 +36,7 @@ export class FactureComponent implements OnInit {
       error: (err: any) => {
         console.log(err)
       }
+
     })
 
   }

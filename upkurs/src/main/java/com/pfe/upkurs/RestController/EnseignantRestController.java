@@ -15,6 +15,7 @@ import org.springframework.web.bind.annotation.*;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.Optional;
 
 @RestController
 @CrossOrigin("*")
@@ -54,9 +55,9 @@ public class EnseignantRestController {
     @RequestMapping(value = "/{id}",method =RequestMethod.PUT)
     public Enseignant ModifierEnseignant(@PathVariable("id")Long id,@RequestBody Enseignant enseignant)
     {
-
-        if (enseignantRepository.findById(id).isPresent()){
-        Enseignant enseignant1=enseignantRepository.findById(id).get();
+       Optional<Enseignant> optionalenseignant = enseignantRepository.findById(id);
+        if (optionalenseignant.isPresent()){
+        Enseignant enseignant1=optionalenseignant.get();
 
             enseignant1.setNom(enseignant.getNom());
             enseignant1.setEmail(enseignant.getEmail());
@@ -64,12 +65,12 @@ public class EnseignantRestController {
             enseignant1.setTelephone(enseignant.getTelephone());
 
             enseignant.setMdp(this.bCryptPasswordEncoder.encode(enseignant1.getMdp()));
-        if( enseignant.isEtat() != enseignant1.isEtat()){
-            //ternary expression
-            String etat = enseignant1.isEtat()? "blouqué" : "Accepté";
-            emailService.sendSimpleMessage(enseignant1.getEmail(),"L'etat de votre compte","votre compte a été " +etat);
-        }
-            enseignant1.setEtat(enseignant.isEtat());
+//        if( enseignant.isEtat() != enseignant1.isEtat()){
+//            //ternary expression
+//            String etat = enseignant1.isEtat()? "blouqué" : "Accepté";
+//            emailService.sendSimpleMessage(enseignant1.getEmail(),"L'etat de votre compte","votre compte a été " +etat);
+//        }
+//            enseignant1.setEtat(enseignant.isEtat());
         return enseignantRepository.save(enseignant1);
     }
         return null;

@@ -1,0 +1,291 @@
+<!doctype html>
+<html lang="en">
+
+
+<!-- Mirrored from skote-v-light.codeigniter.themesbrand.com/tables-basic by HTTrack Website Copier/3.x [XR&CO'2014], Fri, 24 Sep 2021 19:35:45 GMT -->
+<!-- Added by HTTrack --><meta http-equiv="content-type" content="text/html;charset=UTF-8" /><!-- /Added by HTTrack -->
+<head>
+
+    <meta charset="utf-8" />
+<title>Basic Table | Skote - Enseignant & Dashboard Template</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta content="Premium Multipurpose Enseignant & Dashboard Template" name="description" />
+<meta content="Themesbrand" name="author" />
+<!-- App favicon -->
+
+</head>
+
+<body data-sidebar="dark">
+<!-- Begin page -->
+<div id="layout-wrapper">
+
+  <app-header-admin></app-header-admin>
+<!-- ========== Left Sidebar Start ========== -->
+<app-menu></app-menu>
+<!-- Left Sidebar End -->
+    <!-- ============================================================== -->
+    <!-- Start right Content here -->
+    <!-- ============================================================== -->
+    <div class="main-content">
+
+        <div class="page-content">
+            <div class="container-fluid">
+
+                <!-- start page title -->
+<div class="row">
+    <div class="col-12">
+        <div class="page-title-box d-sm-flex align-items-center justify-content-between">
+
+
+
+        </div>
+    </div>
+</div>
+<a href="javascript:void(0)" routerLink="../ajouterenseignant" class="btn btn-primary">Ajouter enseignant </a>
+<!-- end page title -->
+                <div class="row mt-3"  >
+                    <div class="col-xl-12">
+                        <div class="card">
+                            <div class="card-body">
+                                <h4 class="card-title">list Enseignants </h4>
+
+
+                                <div class="table-responsive">
+                                    <table class="table mb-0">
+
+                                        <thead>
+                                            <tr>
+
+                                                <th>nom</th>
+                                                <th>prenom</th>
+                                                <th>email</th>
+
+                                                <th>adresse</th>
+                                                <th>telephone</th>
+                                                <th class="text-right">action</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody >
+                                         <tr *ngFor="let ens of listEnseignants">
+
+                                          <th>{{ens.nom}}</th>
+                                          <td>{{ens.prenom}}</td>
+                                          <td>{{ens.email}}</td>
+                                          <td>{{ens.adresse}}</td>
+                                          <td>{{ens.telephone}}</td>
+                                          <td class="text-right" >
+                                            <button  class="btn btn-success"   data-toggle="modal" data-target="#edit"
+                                             (click)="getEnseignant(ens.id,ens)" style="margin-right: 5px;">Modifier</button>
+                                            <button type="submit" (click)="onDeleteEnseignat(ens)"  class="btn btn-danger">Supprimer</button>
+
+                                                                  </td>
+                                                                </tr>
+
+
+
+
+                                            <!-- <tr
+                                            >
+                                                <td>oussma</td>
+                                                <td>ghouila</td>
+                                                <td>ghouila</td>
+                                                <td>ghouila</td>
+                                                <td>{{enseignant.id}}</td>
+                                                <th>{{enseignant.nom}}</th>
+                                                <td>{{enseignant.prenom}}</td>
+                                                <td>{{enseignant.email}}</td>
+                                                <td>{{enseignant.adresse}}</td>
+                                                <td>{{enseignant.telephone}}</td>
+                                                <td><button type="submit" class="btn btn-success">Modifier</button>
+                                                    <button type="submit" (click)="onDeleteEnseignat(enseignant)" class="btn btn-danger">Supprimer</button>
+                                                    <button *ngIf="enseignant.etat" (click)="updateensetat(enseignant)"  class="bx bx-sm btn-success">
+                                                    <i class="fas fa-user-check"></i></button>
+                                                                                <button *ngIf="!enseignant.etat" class="bx bx-sm btn-dark"
+                                                                                    (click)="updateensetat(enseignant)">
+                                                                                    <i class="fas fa-user-lock"></i>
+                                                                            </button>
+                                                                          </td>
+                                            </tr> -->
+
+
+                                        </tbody>
+                                    </table>
+                                </div>
+
+                            </div>
+                        </div>
+                    </div>
+
+
+                </div>
+
+
+                <div class="modal fade" id="edit" tabindex="-1"
+role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+ <div class="modal-dialog" role="document">
+   <div class="modal-content">
+     <div class="modal-header">
+       <!-- <h5 class="modal-title" id="exampleModalLabel">Modal title</h5> -->
+       <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+         <span aria-hidden="true">&times;</span>
+       </button>
+     </div>
+     <div class="modal-body">
+      <div class="your-order mb-30 align-items-center">
+        <h3>Modifier enseignant</h3>
+        <div class="card-body">
+          <div class="live-preview">
+              <div class="row gy-4">
+                  <!-- <div>
+                      <label for="labelInput" class="form-label">Logo</label>
+                      <input type="file" class="form-control" accept="image/*" (change)="onSelectFile($event);" [(ngModel)]="newCour.logo" id="labelInput"  >
+                  </div> -->
+                  <!--end col-->
+                  <div>
+                    <label for="basiInput" class="form-label">Nom</label>
+                    <input type="text" class="form-control" id="basiInput"  name="nom"
+                     [(ngModel)]="enseignant.nom">
+                </div>
+
+
+                <!--end col-->
+
+                <div>
+                  <label for="basiInput" class="form-label">Prenom</label>
+                  <input type="text" class="form-control" id="basiInput"  name="prenom"
+                   [(ngModel)]="enseignant.prenom">
+              </div>
+              <div>
+                <label for="basiInput" class="form-label">Email</label>
+                <input type="text" class="form-control" id="basiInput"  name="email"
+                 [(ngModel)]="enseignant.email">
+            </div>
+
+
+            <div>
+              <label for="basiInput" class="form-label">Mot de passe</label>
+              <input type="password" class="form-control" id="basiInput"  name="mdp"
+               [(ngModel)]="enseignant.mdp">
+          </div>
+
+          <div>
+            <label for="basiInput" class="form-label">Adresse</label>
+            <input type="text" class="form-control" id="basiInput"  name="adresse"
+             [(ngModel)]="enseignant.adresse">
+        </div>
+
+              </div>
+
+              <!--end row-->
+          </div>
+          <br>
+          <br>
+          <div class="col-xxl-12 text-right">
+           <button type="submit" class="e-btn" data-dismiss="modal"
+           (click)="modifierenseignant()" >Enregistrer</button>
+       </div>
+      </div>
+
+      </div>
+     </div>
+
+   </div>
+ </div>
+</div>
+                <!-- end row -->
+
+                <!-- end row -->
+
+
+                <!-- end row -->
+
+
+                <!-- end row -->
+
+
+                <!-- end row -->
+
+
+                <!-- end row -->
+
+                <!-- end row -->
+
+
+                <!-- end row -->
+
+            </div> <!-- container-fluid -->
+        </div>
+        <!-- End Page-content -->
+
+<!-- <app-footer></app-footer>    -->
+ </div>
+    <!-- end main content-->
+
+</div>
+<!-- END layout-wrapper -->
+
+<!-- Right Sidebar -->
+<div class="right-bar">
+    <div data-simplebar class="h-100">
+        <div class="rightbar-title d-flex align-items-center px-3 py-4">
+
+            <h5 class="m-0 me-2">Settings</h5>
+
+            <a href="javascript:void(0);" class="right-bar-toggle ms-auto">
+                <i class="mdi mdi-close noti-icon"></i>
+            </a>
+        </div>
+
+        <!-- Settings -->
+        <hr class="mt-0" />
+        <h6 class="text-center mb-0">Choose Layouts</h6>
+
+        <div class="p-4">
+            <div class="mb-2">
+                <img src="assets/images/layouts/layout-1.jpg" class="img-fluid img-thumbnail" alt="">
+            </div>
+
+            <div class="form-check form-switch mb-3">
+                <input class="form-check-input theme-choice" type="checkbox" id="light-mode-switch" checked>
+                <label class="form-check-label" for="light-mode-switch">Light Mode</label>
+            </div>
+
+            <div class="mb-2">
+                <img src="assets/images/layouts/layout-2.jpg" class="img-fluid img-thumbnail" alt="">
+            </div>
+            <div class="form-check form-switch mb-3">
+                <input class="form-check-input theme-choice" type="checkbox" id="dark-mode-switch" data-bsStyle="assets/css/bootstrap-dark.min.css" data-appStyle="assets/css/app-dark.min.css">
+                <label class="form-check-label" for="dark-mode-switch">Dark Mode</label>
+            </div>
+
+            <div class="mb-2">
+                <img src="assets/images/layouts/layout-3.jpg" class="img-fluid img-thumbnail" alt="">
+            </div>
+            <div class="form-check form-switch mb-5">
+                <input class="form-check-input theme-choice" type="checkbox" id="rtl-mode-switch" data-appStyle="assets/css/app-rtl.min.css">
+                <label class="form-check-label" for="rtl-mode-switch">RTL Mode</label>
+            </div>
+
+            <div class="mb-2">
+                <img src="assets/images/layouts/layout-4.jpg" class="img-thumbnail" alt="layout images">
+            </div>
+            <div class="form-check form-switch mb-5">
+                <input class="form-check-input theme-choice" type="checkbox" id="dark-rtl-mode-switch">
+                <label class="form-check-label" for="dark-rtl-mode-switch">Dark RTL Mode</label>
+            </div>
+
+        </div>
+
+    </div> <!-- end slimscroll-menu-->
+</div>
+<!-- /Right-bar -->
+
+<!-- Right bar overlay-->
+<div class="rightbar-overlay"></div>
+<!-- JAVASCRIPT -->
+
+</body>
+
+
+<!-- Mirrored from skote-v-light.codeigniter.themesbrand.com/tables-basic by HTTrack Website Copier/3.x [XR&CO'2014], Fri, 24 Sep 2021 19:35:45 GMT -->
+</html>

@@ -20,6 +20,7 @@ export class AjouterSeanceComponent implements AfterViewInit {
   cours: Cour[] = []
   seance = new SessionCours();
   seance_edited = new SessionCours();
+  IsAvailableplaces :boolean;
   id !: number;
   enseignant !: Enseignant
   isEtu: boolean = false //mta deconnexion
@@ -30,10 +31,26 @@ export class AjouterSeanceComponent implements AfterViewInit {
   idAdmin !: number;
   reservation = new Reservation();
   etudiant = new Etudiant();
+  _seance = new SessionCours();
+  showmodal = false
+  reservations: Reservation[] = [];
+  reservationsForstudent: Reservation[] = [];
   constructor(private service: CrudService,private toast:NgToastService) { }
 
   @ViewChild(CalendrierComponent) child: CalendrierComponent | any;
+  getSeance(c: SessionCours) {
+    this._seance = c;
+    this.service.isAvailableplaces(c.id).subscribe(res => {
+      this.IsAvailableplaces = res
+      console.log(this.IsAvailableplaces)
+      if (!this.IsAvailableplaces) {
+        this.toast.error({
+          summary: "il n'ya pas encore des places disponibles",
+        });
+     }
+    })
 
+  }
 
   ngAfterViewInit() {
     console.log("event", this.child.events) // I am a child component!
@@ -41,6 +58,7 @@ export class AjouterSeanceComponent implements AfterViewInit {
       console.log("in ref", this.child.events)
     })
   }
+
   save() {
 
     console.log(this.seance)
@@ -52,11 +70,13 @@ export class AjouterSeanceComponent implements AfterViewInit {
 
     )
   }
-  rejoindre(c: SessionCours) {
-    this.reservation.sessionCours = c;
+  rejoindre() {
+    this.reservation.sessionCours = this._seance;
     this.reservation.etudiant = this.etudiant;
+    this.reservation.sessionCours.nbr_places++;
     console.log(this.reservation)
-    this.service.reserverFromApi(this.reservation).subscribe(res => {
+
+    this.service.reserverFromApi(this.reservation,this._seance.id).subscribe(res => {
       console.log(res)
       this.toast.success({
         summary: 'votre demande a été réussie',
@@ -64,6 +84,15 @@ export class AjouterSeanceComponent implements AfterViewInit {
     })
   }
   ngOnInit() {
+    this.service.getAllreservations().subscribe(
+      data =>{
+          this.reservations = data;
+          console.log(this.reservations)
+          this.reservationsForstudent =
+            this.reservations.filter(res => res.etudiant.id === this.idEtudiant)
+
+      }
+      )
     this.idEnseignant = Number(localStorage.getItem("idEns"));
     this.idEtudiant = Number(localStorage.getItem("idEtu"));
     console.log(this.idEtudiant)
@@ -84,8 +113,9 @@ export class AjouterSeanceComponent implements AfterViewInit {
     this.service.getSessionCours().subscribe(
       res => {
         this.seances = res;
-        this.seancesParEns = this.seances.filter(s => s.cours.enseignant.id == this.idEnseignant)
-        console.log(this.cours)
+        this.seancesParEns = this.seances.filter(s => s.enseignant.id == this.idEnseignant)
+        console.log(this.seances)
+        console.log(this.seancesParEns)
       }
     )
     this.service.getCour().subscribe(

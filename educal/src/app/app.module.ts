@@ -39,6 +39,15 @@ import { CalendarModule, DateAdapter } from 'angular-calendar';
 import { adapterFactory } from 'angular-calendar/date-adapters/date-fns';
 import { ReservationsenseignantComponent } from './reservationsenseignant/reservationsenseignant.component';
 import { MessagesComponent } from './messages/messages.component';
+import { HeaderAdminComponent } from './header-admin/header-admin.component';
+import { FooterAdminComponent } from './footer-admin/footer-admin.component';
+import { ListEnseignantComponent } from './list-enseignant/list-enseignant.component';
+import { ListEtudiantComponent } from './list-etudiant/list-etudiant.component';
+import { AjouteretudiantComponent } from './ajouteretudiant/ajouteretudiant.component';
+import { ListContactComponent } from './list-contact/list-contact.component';
+import { AjouterenseignantComponent } from './ajouterenseignant/ajouterenseignant.component';
+import { MenuComponent } from './menu/menu.component';
+import { SeanceformationComponent } from './seanceformation/seanceformation.component';
 
 
 
@@ -69,14 +78,23 @@ import { MessagesComponent } from './messages/messages.component';
     Header1Component,
     CalendrierComponent,
     ReservationsenseignantComponent,
-    MessagesComponent  
+    MessagesComponent,
+    HeaderAdminComponent,
+    FooterAdminComponent,
+    ListEnseignantComponent,
+    ListEtudiantComponent,
+    ListContactComponent,
+    AjouteretudiantComponent,
+    AjouterenseignantComponent,
+    MenuComponent,
+    SeanceformationComponent
   ],
   imports: [
     BrowserModule,//run Angular applications in a web browser.
     FlatpickrModule.forRoot(),
-    AppRoutingModule, // enables navigation between different components 
+    AppRoutingModule, // enables navigation between different components
     FormsModule, //provides directives and services for handling form controls
-    ReactiveFormsModule,//support for reactive forms in Angular. 
+    ReactiveFormsModule,//support for reactive forms in Angular.
     HttpClientModule, //necessary services and features for making HTTP requests and handling responses
     NgToastModule,//provides toast notifications functionality.
     NgxPaginationModule, //mta3 pagination
@@ -87,10 +105,10 @@ import { MessagesComponent } from './messages/messages.component';
     CalendarModule.forRoot({
       provide: DateAdapter,
       useFactory: adapterFactory,
-      
+
     }),
   ],
-  
+
   providers: [],
   bootstrap: [AppComponent]
 })

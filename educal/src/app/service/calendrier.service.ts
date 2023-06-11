@@ -38,8 +38,13 @@ export class CalendrierService {
     return this.http.get<any>( "http://localhost:8081/api/reservation/get-all-by-id-enseignant/"+localStorage.getItem("idEns") , this.httpOptions);
   }
   getAllReservationbyEtudientId(){
-    return this.http.get<any>( "http://localhost:8081/api/reservation/get-all-by-id-etudient/"+localStorage.getItem("idEtu") , this.httpOptions);
+    return this.http.get<any>("http://localhost:8081/api/reservation/get-all-by-id-etudient/" +
+      localStorage.getItem("idEtu"), this.httpOptions);
   }
+  // getAllReservationbyEtudientId() {
+  //   return this.http.get<any>("http://localhost:8081/api/reservation/get-all-by-id-etudient/" +
+  //     localStorage.getItem("idEtu"), this.httpOptions);
+  // }
   reserverFromApi(rq:any){
      return this.http.post<any>( "http://localhost:8081/api/reservation" ,rq ,this.httpOptions);
   }
@@ -48,6 +53,9 @@ export class CalendrierService {
   }
   getById(id:number){
     return  this.http.get("http://localhost:8081/api/reservation/"+id , this.httpOptions)
+  }
+  getByIdsession(id: number) {
+    return  this.http.get("http://localhost:8081/api/sessionCour/"+id , this.httpOptions)
   }
   annuler(id:any){
     return this.http.put("http://localhost:8081/api/reservation/annuler/"+id,{},this.httpOptions);

@@ -1,0 +1,241 @@
+<!doctype html>
+<html lang="en">
+
+
+<!-- Mirrored from skote-v-light.codeigniter.themesbrand.com/form-elements by HTTrack Website Copier/3.x [XR&CO'2014], Fri, 24 Sep 2021 19:35:30 GMT -->
+<!-- Added by HTTrack --><meta http-equiv="content-type" content="text/html;charset=UTF-8" /><!-- /Added by HTTrack -->
+<head>
+
+    <meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta content="Premium Multipurpose Enseignant & Dashboard Template" name="description" />
+<meta content="Themesbrand" name="author" />
+<!-- App favicon -->
+<link rel="shortcut icon" href="assets/images/favicon.ico">
+
+    <!-- Bootstrap Css -->
+</head>
+
+<body data-sidebar="dark">
+<!-- Begin page -->
+<div id="layout-wrapper">
+
+  <app-header-admin></app-header-admin>
+<!-- ========== Left Sidebar Start ========== -->
+<app-menu></app-menu>
+<!-- Left Sidebar End -->
+    <!-- ============================================================== -->
+    <!-- Start right Content here -->
+    <!-- ============================================================== -->
+    <div class="main-content">
+
+        <div class="page-content">
+            <div class="container-fluid">
+
+                <!-- start page title -->
+<div class="row">
+    <div class="col-12">
+        <div class="page-title-box d-sm-flex align-items-center justify-content-between">
+
+            <div class="page-title-right">
+                <ol class="breadcrumb m-0">
+                </ol>
+            </div>
+
+        </div>
+    </div>
+</div>
+<!-- end page title -->
+                <div class="row">
+
+                    <div class="col-12">
+                    <form [formGroup]="enseignantForm" (ngSubmit)="addNewEnseignant()" >
+                        <div class="card">
+                            <div class="card-body">
+
+                                <h4 class="card-title">Ajouter Enseignant</h4>
+
+
+                                <div class="mb-3 row">
+                                    <label for="example-text-input" class="col-md-2 col-form-label">Nom</label>
+                                    <div class="col-md-10">
+                                        <input class="form-control"formControlName="nom"
+                                        type="text" placeholder="Nom" id="example-text-input">
+                                    </div>
+                                </div>
+                                <div *ngIf="nom?.touched && nom?.invalid">
+                                    <small class="text-danger" *ngIf="nom?.errors?.['required']">nom
+                                        est obligatoire</small>
+                                  </div>
+                                <div class="mb-3 row">
+                                    <label for="example-search-input" class="col-md-2 col-form-label">Prenom</label>
+                                    <div class="col-md-10">
+                                        <input class="form-control"formControlName="prenom"
+                                        type="text" placeholder="Prenom" id="example-search-input">
+                                    </div>
+                                </div>
+                                <div *ngIf="nom?.touched && nom?.invalid">
+                                    <small class="text-danger" *ngIf="nom?.errors?.['required']">prenom
+                                        est obligatoire</small>
+                                  </div>
+                                <div class="mb-3 row">
+                                    <label for="example-email-input" class="col-md-2 col-form-label">Email</label>
+                                    <div class="col-md-10">
+                                        <input class="form-control" formControlName="email"
+                                        type="email"  placeholder=" Email" id="example-email-input">
+                                    </div>
+                                </div>
+                                <div *ngIf="email?.touched && email?.invalid">
+                                <small class="text-danger" *ngIf="email?.errors?.['required']">email
+                                    est obligatoire</small>
+                                    <small class="text-danger" *ngIf="email?.errors?.['email']">email
+                                        est de format email</small>
+                              </div>
+
+
+                                <div class="mb-3 row">
+                                    <label for="example-adresse-input" class="col-md-2 col-form-label">Adresse</label>
+                                    <div class="col-md-10">
+                                        <input class="form-control" formControlName="adresse"
+                                        type="adresse"  placeholder=" Adresse" id="example-adresse-input">
+                                    </div>
+                                </div>
+                                <div *ngIf="adresse?.touched && adresse?.invalid">
+                                    <small class="text-danger" *ngIf="adresse?.errors?.['required']">adresse
+                                        est obligatoire</small>
+                                  </div>
+
+                                <div class="mb-3 row">
+                                    <label for="example-telephone-input" class="col-md-2 col-form-label">telephone</label>
+                                    <div class="col-md-10">
+                                        <input class="form-control" formControlName="telephone" pattern="[0-9]{8}"
+                                        type="telephone"  placeholder=" Telephone" id="example-telephone-input">
+                                    </div>
+                                    <div *ngIf="telephone?.invalid && (telephone?.dirty || telephone?.touched)">
+                                        <small *ngIf="telephone?.errors?.['required']" class="text-danger">
+                                            Le telephone est obligatoire.
+                                        </small>
+                                        <small *ngIf="telephone?.errors?.['maxLength']" class="text-danger">
+                                            Le telephone doit comporter au moins 8 chiffre.
+                                        </small>
+
+
+                                        <small *ngIf="telephone?.errors?.['pattern']" class="text-danger">
+                                            Accepter le format de telephone .
+                                        </small>
+
+                                    </div>
+                                </div>
+
+                                <div class="mb-3 row">
+                                    <label for="example-password-input" class="col-md-2 col-form-label">Mot de passe</label>
+                                    <div class="col-md-10">
+                                        <input class="form-control"formControlName="mdp"
+                                        type="password" placeholder="Mot de passe" id="example-password-input">
+                                    </div>
+                                </div>
+
+                                  <div *ngIf="mdp?.touched && mdp?.invalid">
+                                    <small class="text-danger" *ngIf="mdp?.errors?.['required']">Motde passe
+                                        est obligatoire</small>
+                                  </div>
+                                <div class="col-md-4">
+                                    <button type="submit" class="btn btn-primary" style="margin-left: 1120px;">Ajouter</button>
+
+
+                                </div>
+
+
+
+
+                            </div>
+                        </div>
+                    </form>
+                    </div> <!-- end col -->
+
+                </div>
+                <!-- end row -->
+
+
+                <!-- end row -->
+
+
+                <!-- end row -->
+
+            </div> <!-- container-fluid -->
+        </div>
+        <!-- End Page-content -->
+
+
+  <!-- <app-footer></app-footer>  -->
+  </div>
+    <!-- end main content-->
+
+</div>
+<!-- END layout-wrapper -->
+
+<!-- Right Sidebar -->
+<div class="right-bar">
+    <div data-simplebar class="h-100">
+        <div class="rightbar-title d-flex align-items-center px-3 py-4">
+
+            <h5 class="m-0 me-2">Settings</h5>
+
+            <a href="javascript:void(0);" class="right-bar-toggle ms-auto">
+                <i class="mdi mdi-close noti-icon"></i>
+            </a>
+        </div>
+
+        <!-- Settings -->
+        <hr class="mt-0" />
+        <h6 class="text-center mb-0">Choose Layouts</h6>
+
+        <div class="p-4">
+            <div class="mb-2">
+                <img src="assets/images/layouts/layout-1.jpg" class="img-fluid img-thumbnail" alt="">
+            </div>
+
+            <div class="form-check form-switch mb-3">
+                <input class="form-check-input theme-choice" type="checkbox" id="light-mode-switch" checked>
+                <label class="form-check-label" for="light-mode-switch">Light Mode</label>
+            </div>
+
+            <div class="mb-2">
+                <img src="assets/images/layouts/layout-2.jpg" class="img-fluid img-thumbnail" alt="">
+            </div>
+            <div class="form-check form-switch mb-3">
+                <input class="form-check-input theme-choice" type="checkbox" id="dark-mode-switch" data-bsStyle="assets/css/bootstrap-dark.min.css" data-appStyle="assets/css/app-dark.min.css">
+                <label class="form-check-label" for="dark-mode-switch">Dark Mode</label>
+            </div>
+
+            <div class="mb-2">
+                <img src="assets/images/layouts/layout-3.jpg" class="img-fluid img-thumbnail" alt="">
+            </div>
+            <div class="form-check form-switch mb-5">
+                <input class="form-check-input theme-choice" type="checkbox" id="rtl-mode-switch" data-appStyle="assets/css/app-rtl.min.css">
+                <label class="form-check-label" for="rtl-mode-switch">RTL Mode</label>
+            </div>
+
+            <div class="mb-2">
+                <img src="assets/images/layouts/layout-4.jpg" class="img-thumbnail" alt="layout images">
+            </div>
+            <div class="form-check form-switch mb-5">
+                <input class="form-check-input theme-choice" type="checkbox" id="dark-rtl-mode-switch">
+                <label class="form-check-label" for="dark-rtl-mode-switch">Dark RTL Mode</label>
+            </div>
+
+        </div>
+
+    </div> <!-- end slimscroll-menu-->
+</div>
+<!-- /Right-bar -->
+
+<!-- Right bar overlay-->
+<div class="rightbar-overlay"></div>
+<!-- JAVASCRIPT -->
+
+</body>
+
+
+<!-- Mirrored from skote-v-light.codeigniter.themesbrand.com/form-elements by HTTrack Website Copier/3.x [XR&CO'2014], Fri, 24 Sep 2021 19:35:30 GMT -->
+</html>

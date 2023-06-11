@@ -8,7 +8,7 @@ import java.util.List;
 import java.util.Optional;
 
 public interface ReservationService {
-    Reservation ajouterReservation(Reservation reservation );
+    Reservation ajouterReservation(Reservation reservation,Long id );
 
     Reservation modifierReservation(Reservation reservation);
 

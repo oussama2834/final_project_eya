@@ -22,6 +22,11 @@ public class SessionCourRestController {
 
         return sessionCoursService.ajouterSessionCours(sessionCours, idEns);
     }
+    @GetMapping("/availableplaces/{idsession}")
+    public Boolean availablesession(@PathVariable Long idsession){
+        return sessionCoursService.IsAvailablePlaces(idsession);
+    }
+
 
     @RequestMapping(method = RequestMethod.POST)
     public SessionCours ajouterSessionCours(@RequestBody SessionCours sessionCours){

@@ -17,9 +17,9 @@ public class ReservqtionRestContrller {
     @Autowired
     ReservationService reservationService;
 
-    @RequestMapping(method = RequestMethod.POST)
-    public Reservation ajouterReservation(@RequestBody Reservation reservation ){
-        return reservationService.ajouterReservation(reservation);
+    @RequestMapping(value ="/ajout/{id}",method = RequestMethod.POST)
+    public Reservation ajouterReservation(@RequestBody Reservation reservation,@PathVariable Long id ){
+        return reservationService.ajouterReservation(reservation,id);
     }
 
     @RequestMapping(value = "/{id}" ,method = RequestMethod.PUT)

@@ -1,9 +1,13 @@
 package com.pfe.upkurs.Service;
 
 
+import com.pfe.upkurs.Entites.Cours;
 import com.pfe.upkurs.Entites.Enseignant;
+import com.pfe.upkurs.Entites.SessionCours;
 import com.pfe.upkurs.Repository.AdminRepository;
+import com.pfe.upkurs.Repository.CoursRepository;
 import com.pfe.upkurs.Repository.EnseignantRepository;
+import com.pfe.upkurs.Repository.SessionCoursRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -15,6 +19,11 @@ public class EnseignantServicelmpl implements EnseignantService {
 
     @Autowired
     EnseignantRepository enseignantRepository;
+    @Autowired
+    CoursRepository coursRepository;
+    @Autowired
+    SessionCoursRepository sessionCoursRepository;
+
 
 
     @Override
@@ -30,7 +39,19 @@ public class EnseignantServicelmpl implements EnseignantService {
 
     @Override
     public void SupprimerEnseignant(Long id) {
-        enseignantRepository.deleteById(id);
+        List<Cours> cours = coursRepository.findCoursByEnseignantId(id);
+        List<SessionCours> seances = sessionCoursRepository.findSessionCoursByEnseignantId(id);
+        if (seances == null  ){
+            coursRepository.deleteAll(cours);
+            enseignantRepository.deleteById(id);
+//            sessionCoursRepository.deleteAll(seances);
+        }
+        else {
+            sessionCoursRepository.deleteAll(seances);
+            coursRepository.deleteAll(cours);
+            enseignantRepository.deleteById(id);
+        }
+
 
     }
 
