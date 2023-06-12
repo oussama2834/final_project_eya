@@ -1,11 +1,10 @@
 import { Component } from '@angular/core';
 import { CrudService } from '../service/crud.service';
-
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { NgToastService } from 'ng-angular-popup';
 import { Enseignant } from '../Model/Enseignant.model';
-import { DomaineEtude } from '../Model/DomaineEtude.model';
+
 
 @Component({
   selector: 'app-signup',
@@ -14,6 +13,7 @@ import { DomaineEtude } from '../Model/DomaineEtude.model';
 })
 export class SignupComponent {
   emailexist = false;
+  telephoneExist = false;
   ngOnInit() {
 
   }
@@ -61,52 +61,59 @@ export class SignupComponent {
     console.log(enseignant);
      this.services.emailEnseignantExist(data.email).subscribe( res =>
      {
-       this.emailexist = res
-       console.log(this.emailexist)
-       if (
-        data.nom == 0 ||
-        data.prenom == 0||
-        data.email == 0||
-        data.adresse == 0||
-        data.telephone == 0||
-        data.mdp == 0||
-        this.cv == 0 ||
-        this.emailexist == true
-  
-    ) {
-  
-        this.toast.info({
-          detail: 'Error Message',
-          summary: 'Remplir votre champs',
-        });
-      } 
-      else  {
-      
-      this.services.addenseignant(enseignant).subscribe
-        (res=>{
-          console.log(res);
-          this.toast.success({
-            detail: 'Succes Message',
-            summary: 'Message est Envoyée',
-          });
-  
-          this.router.navigate(['/signin']);
-        },
-        err=>{
-          this.message=`<div class="alert alert-warning" role="alert">
-          Inscription échouée !
-        </div>`
-        setTimeout(() => {
-          this.message=""
-        }, 3000);
-  
-       }
-      )
-  
-      }
+       this.services.TelEnseignantExist(data.telephone).subscribe(resultat => {
+         this.telephoneExist = resultat
+         this.emailexist = res
+         console.log(this.emailexist)
+         if (
+           data.nom == 0 ||
+           data.prenom == 0 ||
+           data.email == 0 ||
+           data.adresse == 0 ||
+           data.telephone == 0 ||
+           data.mdp == 0 ||
+           this.cv == 0 
+
+
+         ) {
+
+           this.toast.info({
+             detail: 'Error Message',
+             summary: 'Remplir votre champs',
+           });
+         }
+         else {
+           if (!this.emailexist && !this.telephoneExist) {
+
+
+             this.services.addenseignant(enseignant).subscribe
+               (res => {
+                 console.log(res);
+                 this.toast.success({
+                   detail: 'Succes Message',
+                   summary: 'Message est Envoyée',
+                 });
+
+                 this.router.navigate(['/signin']);
+               },
+                 err => {
+                   this.message = `<div class="alert alert-warning" role="alert">
+            Inscription échouée !
+          </div>`
+                   setTimeout(() => {
+                     this.message = ""
+                   }, 3000);
+
+                 }
+               )
+
+           }
+         }
+       })
+
 
    })
-   
+
   }
 
   recuperPhoto(fileInput: any) {

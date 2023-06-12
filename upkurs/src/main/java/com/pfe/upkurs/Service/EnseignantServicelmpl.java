@@ -65,4 +65,9 @@ public class EnseignantServicelmpl implements EnseignantService {
         return enseignantRepository.findById(id);
 
     }
+
+    @Override
+    public boolean ExistsByTelephone(String telephone) {
+        return enseignantRepository.existsByTelephone(telephone);
+    }
 }

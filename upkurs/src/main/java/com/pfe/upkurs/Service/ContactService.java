@@ -9,6 +9,8 @@ import java.util.Optional;
 
 public interface ContactService {
     Contact AjouterContact(Contact contact);
+    Contact AjouterContactEnseignant(Contact contact,Long idEnseignant);
+    Contact AjouterContactEtudiant(Contact contact,Long idEtudiant);
     Contact ModifierContact(Contact contact);
     void SupprimerContact(Long id);
     List<Contact> CONTACT_LIST();

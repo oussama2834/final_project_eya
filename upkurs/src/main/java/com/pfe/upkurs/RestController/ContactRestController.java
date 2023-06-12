@@ -26,6 +26,16 @@ public class ContactRestController {
     public Contact AjouterContact(@RequestBody Contact contact) {
         return contactService.AjouterContact(contact);
     }
+    @PostMapping("ajoutcontactEnseignant/{id}")
+    public Contact AjouterContactEnseignant(@RequestBody Contact contact,@PathVariable Long id) {
+        return contactService.AjouterContactEnseignant(contact,id);
+    }
+    @PostMapping("ajoutcontactEtudiant/{id}")
+    public Contact AjouterContactEtudiant(@RequestBody Contact contact,@PathVariable Long id) {
+        return contactService.AjouterContactEtudiant(contact,id);
+    }
+
+
 
     @RequestMapping(value = "/{id}", method = RequestMethod.PUT)
     public Contact ModifierContact(@PathVariable("id") Long id, @RequestBody Contact contact) {

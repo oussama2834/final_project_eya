@@ -56,6 +56,7 @@
                                                 <th>message</th>
                                                 <th>email</th>
                                                 <th>sujet</th>
+                                                <th>Utilisateur</th>
 
 
                                                 <th>action</th>
@@ -69,6 +70,28 @@
                                                 <td>{{contact.message}}</td>
                                                 <td>{{contact.email}}</td>
                                                 <td>{{contact.sujet}}</td>
+                                                <td>
+                                                  <!-- <button type="button" class="btn btn-secondary"
+                                     data-toggle="tooltip" data-html="true"
+                                      title="">
+                                      Tooltip with HTML
+                                    </button> -->
+                                                  <span  *ngIf="contact.etudiant !=null" >
+                                                    <ul>
+                                                      <li><strong>Etudiant : </strong> <span class="text-muted">{{contact.etudiant.prenom}}&nbsp;{{contact.etudiant.nom}}</span></li>
+
+                                                      <li><strong>cin :</strong><span class="text-muted"> {{contact.etudiant.cin}}</span></li>
+                                                    </ul>
+                                                   </span>
+                                                  <span  *ngIf="contact.enseignant != null">
+                                                  <ul>
+                                                    <li><strong>Enseignant : </strong> <span class="text-muted">{{contact.enseignant.prenom}}&nbsp;{{contact.enseignant.nom}}</span></li>
+
+                                                    <li><strong>Telephone :</strong><span class="text-muted">
+                                                       {{contact.enseignant.telephone}}</span></li>
+                                                  </ul>
+                                                </span>
+                                                </td>
 
                                                 <td>
                                                     <button type="submit" (click)="onDeleteContact(contact)" class="btn btn-danger">Supprimer</button></td>
@@ -78,6 +101,9 @@
 
                                         </tbody>
                                     </table>
+
+
+
                                 </div>
 
                             </div>

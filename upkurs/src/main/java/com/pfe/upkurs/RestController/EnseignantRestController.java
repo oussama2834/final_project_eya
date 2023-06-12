@@ -41,6 +41,11 @@ public class EnseignantRestController {
         return enseignantRepository.existsByEmail(email);
 
     }
+    @GetMapping("/existbytelephone/{telephone}")
+    public boolean existByTelephone(@PathVariable String telephone){
+        return enseignantRepository.existsByTelephone(telephone);
+
+    }
     @GetMapping("/{id}")
     public Enseignant getEnseignant(@PathVariable  Long id){
 

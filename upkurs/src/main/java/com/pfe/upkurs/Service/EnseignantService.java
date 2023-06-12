@@ -13,6 +13,7 @@ public interface EnseignantService {
     void SupprimerEnseignant(Long id);
     List<Enseignant> ENSEIGNANT_LIST();
     Optional<Enseignant> findById(Long id);
+    boolean ExistsByTelephone(String telephone);
 
 
 }

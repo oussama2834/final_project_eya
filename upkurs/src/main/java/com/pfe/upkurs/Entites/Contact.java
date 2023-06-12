@@ -18,4 +18,6 @@ public class Contact {
     private String message;
     @ManyToOne
     Etudiant etudiant;
+    @ManyToOne
+    Enseignant enseignant;
 }

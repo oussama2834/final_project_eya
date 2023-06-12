@@ -19,7 +19,7 @@ export class ListContactComponent {
 
     this.service.getContacts().subscribe(contacts => {
       this.Listcontact =  contacts
-
+      console.log(this.Listcontact);
     })
   }
   onDeleteContact(contact :Contact) {

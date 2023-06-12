@@ -141,6 +141,12 @@ isLoggedIn(){
    /* lajouter contact */
  addcontact(contact:Contact){
   return this.http.post<any>(this.apiUrl+"/contact", contact,this.httpOptions);
+  }
+  addcontactEnseignant(contact: Contact,id:number) {
+  return this.http.post<any>(this.apiUrl+"/contact/ajoutcontactEnseignant/"+id, contact,this.httpOptions);
+  }
+  addcontactEtudiant(contact: Contact,id:number) {
+  return this.http.post<any>(this.apiUrl+"/contact/ajoutcontactEtudiant/"+id, contact,this.httpOptions);
  }
  deletecontact(id:number){
   return this.http.delete<any>(this.apiUrl+"/contact/"+id,this.httpOptions);
@@ -294,6 +300,9 @@ getAllreservations(){
 
   emailEnseignantExist(email: string) {
     return this.http.get<any>("http://localhost:8081/api/enseignant/existbyemail/"+email)
+  }
+  TelEnseignantExist(tel: string) {
+    return this.http.get<any>("http://localhost:8081/api/enseignant/existbytelephone/"+tel)
   }
   emailEtudiantExist(email: string) {
     return this.http.get<any>("http://localhost:8081/api/etudiant/existbyemail/"+email)

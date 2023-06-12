@@ -1,8 +1,10 @@
 package com.pfe.upkurs.Service;
 
 import com.pfe.upkurs.Entites.Contact;
+import com.pfe.upkurs.Entites.Enseignant;
 import com.pfe.upkurs.Entites.Etudiant;
 import com.pfe.upkurs.Repository.ContactRepository;
+import com.pfe.upkurs.Repository.EnseignantRepository;
 import com.pfe.upkurs.Repository.EtudiantRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -17,6 +19,8 @@ public class ContactServiceImpl implements ContactService{
     ContactRepository contactRepository;
     @Autowired
     EtudiantRepository etudiantRepository;
+    @Autowired
+    EnseignantRepository enseignantRepository;
 
     @Override
     public Contact AjouterContact(Contact contact) {
@@ -29,6 +33,28 @@ public class ContactServiceImpl implements ContactService{
 //        return null;
 
 
+    }
+
+    @Override
+    public Contact AjouterContactEnseignant(Contact contact,Long idEnseignant) {
+        Optional<Enseignant> enseignantoptional = enseignantRepository.findById(idEnseignant);
+        if (enseignantoptional.isPresent()){
+          Enseignant enseignant = enseignantoptional.get();
+             contact.setEnseignant(enseignant);
+             return contactRepository.save(contact);
+        }
+        return null;
+    }
+
+    @Override
+    public Contact AjouterContactEtudiant(Contact contact, Long idEtudiant) {
+        Optional<Etudiant> etudiantoptional = etudiantRepository.findById(idEtudiant);
+        if (etudiantoptional.isPresent()){
+            Etudiant etudiant= etudiantoptional.get();
+            contact.setEtudiant(etudiant);
+            return contactRepository.save(contact);
+        }
+        return null;
     }
 
     @Override

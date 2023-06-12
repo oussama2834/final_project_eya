@@ -1,3 +1,4 @@
+import { Enseignant } from "./Enseignant.model";
 import { Etudiant } from "./etudiant.model";
 
 export class Contact {
@@ -8,7 +9,8 @@ export class Contact {
 
         public sujet?:string,
         public message?:string,
-        public etudiant?:Etudiant
+        public etudiant?:Etudiant,
+        public enseignant?:Enseignant
 
 
 

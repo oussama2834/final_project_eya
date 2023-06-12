@@ -10,37 +10,43 @@ import { NgToastService } from 'ng-angular-popup';
   styleUrls: ['./contact.component.css']
 })
 export class ContactComponent {
-  contactForm:FormGroup
- 
-  newContact=new Contact()
+  contactForm: FormGroup;
+  idEnseignant: number;
+  idEtudiant: number;
+  newContact = new Contact();
+  ngOnInit() {
+    this.idEnseignant = Number(localStorage.getItem("idEns"));
+    this.idEtudiant = Number(localStorage.getItem("idEtu"));
+}
+  constructor(private services: CrudService, private router: Router, private fb: FormBuilder,
 
-  constructor(private services : CrudService , private router : Router,private fb:FormBuilder, private toast:NgToastService) {
+    private toast: NgToastService) {
     let formControls = {
       nom: new FormControl('',[
         Validators.required,]),
-    
+
       email: new FormControl('',[
         Validators.required,]),
       sujet: new FormControl('',[
         Validators.required,]),
-      
+
         message: new FormControl('',[
           Validators.required,])}
      this.contactForm = this.fb.group(formControls)
    }
-   get nom() {return this.contactForm.get('nom');} 
+   get nom() {return this.contactForm.get('nom');}
   get email() { return this.contactForm.get('prenom');}
   get sujet() {return this.contactForm.get('email');}
   get message() {return this.contactForm.get('mdp');}
 
-  
+
    addNewContacts() {
     let data = this.contactForm.value;
     console.log(data);
     let contact = new Contact(
      undefined, data.nom,data.email,data.sujet,data.message);
     console.log(contact);
-    
+
     if (
       data.nom == 0 ||
       data.email == 0||
@@ -52,23 +58,44 @@ export class ContactComponent {
         summary: 'Remplir votre champs',
       });
     } else {
-    this.services.addcontact(contact).subscribe(
-      res=>{
-        console.log(res);
-        this.toast.success({
-          detail: 'Succes Message',
-          summary: 'Message est Envoyée',
-        });
-        
-        this.router.navigate(['/contact']);
-      },
-      err=>{
-        console.log(err);
-        this.toast.error({
-          detail: 'Error Message',
-          summary: 'Probléme de Serveur',
-        }); }
-    )
+      if (this.idEnseignant) {
+        this.services.addcontactEnseignant(contact,this.idEnseignant).subscribe(
+          res=>{
+            console.log(res);
+            this.toast.success({
+              detail: 'Succes Message',
+              summary: 'Message est Envoyée',
+            });
+
+            this.router.navigate(['/contact']);
+          },
+          err=>{
+            console.log(err);
+            this.toast.error({
+              detail: 'Error Message',
+              summary: 'Probléme de Serveur',
+            }); }
+        )
+      } else {
+        this.services.addcontactEtudiant(contact,this.idEtudiant).subscribe(
+          res=>{
+            console.log(res);
+            this.toast.success({
+              detail: 'Succes Message',
+              summary: 'Message est Envoyée',
+            });
+
+            this.router.navigate(['/contact']);
+          },
+          err=>{
+            console.log(err);
+            this.toast.error({
+              detail: 'Error Message',
+              summary: 'Probléme de Serveur',
+            }); }
+        )
+      }
+
 
     }
   }

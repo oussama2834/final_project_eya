@@ -17,7 +17,7 @@ import { AddcoursComponent } from './addcours/addcours.component';
 import { InscriptionComponent } from './inscription/inscription.component';
 import { ConnecxionComponent } from './connecxion/connecxion.component';
 import { ConnectComponent } from './connect/connect.component';
-
+import { TooltipModule } from 'ngx-bootstrap/tooltip';
 import { NgxPaginationModule } from 'ngx-pagination';
 // import { PdfViewerModule } from 'ng2-pdf-viewer';
 import { DetailCourComponent } from './detail-cour/detail-cour.component';
@@ -92,6 +92,7 @@ import { SeanceformationComponent } from './seanceformation/seanceformation.comp
   imports: [
     BrowserModule,//run Angular applications in a web browser.
     FlatpickrModule.forRoot(),
+    TooltipModule.forRoot(),
     AppRoutingModule, // enables navigation between different components
     FormsModule, //provides directives and services for handling form controls
     ReactiveFormsModule,//support for reactive forms in Angular.

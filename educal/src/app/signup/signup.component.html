@@ -249,6 +249,7 @@
                                   <div *ngIf="enseignantForm.get('email').errors?.['pattern']">L'email doit être une adresse email valide</div>
 
                                 </div>
+                                <div class="alert alert-danger mt-2" *ngIf="emailexist"> Email est déjà utilisé</div>
                               </div>
                               <div class="sign__input-wrapper mb-10">
                                  <h5>Adresse</h5>
@@ -276,7 +277,8 @@
                                   <div *ngIf="enseignantForm.get('telephone')?.errors?.['required']">Telephone est obligatoire</div>
                                   <div *ngIf="enseignantForm.get('telephone')?.errors?.['pattern']">Le numéro de téléphone doit contenir  8 chiffres.</div>
                                 </div>
-                                <div class="alert alert-danger mt-2" *ngIf="emailexist"> Email est déjà utilisé</div>
+
+                                <div class="alert alert-danger mt-2" *ngIf="telephoneExist"> Telephone est déjà utilisé</div>
                               </div>
                               <div class="sign__input-wrapper mb-10">
                                  <h5>Mot de passe</h5>

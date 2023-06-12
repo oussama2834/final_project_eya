@@ -65,43 +65,44 @@ export class InscriptionComponent {
      })
 
 
-    if (
-      data.nom == 0 ||
-      data.prenom == 0||
-      data.email == 0||
-      data.adresse == 0||
-      data.cin == 0||
-      data.mdp == 0 ||
-      this.cinexist == true ||
-      this.emailexist == true
-    ) {
-      this.toast.info({
-        detail: 'Error Message',
-        summary: 'Remplir votre champs',
-      });
-    } else {
-    this.services.registEtudiant(etudiant).subscribe
-      (res=>{
-        console.log(res);
-        this.toast.success({
-          detail: 'Succes Message',
-          summary: 'Message est Envoyée',
-        });
+     if (
+       data.nom == 0 ||
+       data.prenom == 0 ||
+       data.email == 0 ||
+       data.adresse == 0 ||
+       data.cin == 0 ||
+       data.mdp == 0
 
-        this.router.navigate(['/connexion']);
-      },
-      err=>{
-        this.message=`<div class="alert alert-warning" role="alert">
+     ) {
+       this.toast.info({
+         detail: 'Error Message',
+         summary: 'Remplir votre champs',
+       });
+     } else {
+       if (!this.cinexist && !this.emailexist) {
+         this.services.registEtudiant(etudiant).subscribe
+           (res => {
+             console.log(res);
+             this.toast.success({
+               detail: 'Succes Message',
+               summary: 'Message est Envoyée',
+             });
+
+             this.router.navigate(['/connexion']);
+           },
+             err => {
+               this.message = `<div class="alert alert-warning" role="alert">
        Essayez de nouveau !
       </div>`
-      setTimeout(() => {
-        this.message=""
-      }, 3000);
+               setTimeout(() => {
+                 this.message = ""
+               }, 3000);
 
+             }
+           )
+
+       }
      }
-    )
-
-    }
   }
 
 
